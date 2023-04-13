@@ -4,6 +4,10 @@ My personal website
 
 Run commands:
 
+    npm install
+
+    npm install -D tailwindcss
+    
     npm install three
 
     npm install @react-three/fiber @react-three/drei maath react-parallax-tilt react-vertical-timeline-component @emailjs/browser framer-motion react-router-dom

@@ -30,11 +30,9 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+    emailjs.send(
+        'service_b0besfb',
+        'template_ja0rml1',
         {
           from_name: form.name,
           to_name: "xGeN02",
@@ -42,7 +40,7 @@ const Contact = () => {
           to_email: "manuelmateodgl02@gmail.com",
           message: form.message,
         },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        'L6t8bh0eQtZnABybw',
       )
       .then(
         () => {
@@ -118,7 +116,7 @@ const Contact = () => {
             type='submit'
             className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
           >
-            {loading ? "Sending..." : "Send"}
+            {loading ? "Sending da juicer..." : "Send"}
           </button>
         </form>
       </motion.div>

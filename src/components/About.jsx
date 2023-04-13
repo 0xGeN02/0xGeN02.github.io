@@ -47,8 +47,8 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        THX for visiting my personal webpage!!! I'm a software developer who loves building with JavaScript, C/C++, and Python.
-        Now I'm currently studing a Smart Systems Degree to build new tech as AI and learn to process Big Data. Even though, my most loved niche in the developer world is web 3 and all that blockchain can offer to us.
+        Welcome to my personal webpage! As a passionate software developer, I thrive on creating innovative solutions using the power of JavaScript, C/C++, and Python.
+But wait, there's more! I'm currently pursuing a Smart Systems Degree to master the latest advancements in AI and Big Data processing. However, my true calling lies in the exciting realm of web 3 and blockchain technology. Join me on a journey to discover endless possibilities and build the future together.
 
       </motion.p>
 

@@ -1,6 +1,7 @@
 0xGeN02.github.io
 
-My personal website
+My first personal website
+All credits to Javascript Maestry on YT
 
 Run commands:
 

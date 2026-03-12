@@ -4,7 +4,6 @@ import { Command, CommandContext, Lang } from "./types";
 import Whoami from "@/app/components/commands/whoami";
 import Skills from "@/app/components/commands/skills";
 import Experience from "@/app/components/commands/experience";
-import Education from "@/app/components/commands/education";
 import Contact from "@/app/components/commands/contact";
 import Blog from "@/app/components/commands/blog";
 
@@ -46,8 +45,7 @@ function HelpOutput({ lang }: { lang: Lang }) {
     { name: "whoami",     en: "fastfetch-style system info",     es: "info del sistema estilo fastfetch" },
     { name: "skills",     en: "tech stack / skills",             es: "stack técnico / habilidades" },
     { name: "projects",   en: "GitHub projects",                 es: "proyectos de GitHub" },
-    { name: "experience", en: "work experience",                 es: "experiencia laboral" },
-    { name: "education",  en: "education",                       es: "educación" },
+    { name: "experience", en: "work experience & education",     es: "experiencia y formación" },
     { name: "contact",    en: "contact info & social links",     es: "contacto y redes sociales" },
     { name: "blog",       en: "blog posts",                      es: "artículos del blog" },
     { name: "banner",     en: "show ASCII banner",               es: "mostrar banner ASCII" },
@@ -100,13 +98,8 @@ export const COMMANDS: Command[] = [
   },
   {
     name: "experience",
-    description: { en: "work experience", es: "experiencia laboral" },
+    description: { en: "work experience & education", es: "experiencia y formación" },
     run: (_args, ctx) => <Experience lang={ctx.lang} />,
-  },
-  {
-    name: "education",
-    description: { en: "education", es: "educación" },
-    run: (_args, ctx) => <Education lang={ctx.lang} />,
   },
   {
     name: "contact",

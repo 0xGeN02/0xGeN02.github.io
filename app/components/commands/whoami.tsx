@@ -144,26 +144,11 @@ export default function Whoami({ lang }: { lang: Lang }) {
         ))}
       </div>
 
-      {/* ── Achievements ── */}
-      {d.achievements && d.achievements.length > 0 && (
-        <>
-          <Divider label={isEn ? " achievements " : " logros "} />
-          <div className="space-y-0.5 pl-1">
-            {d.achievements.map((a, i) => (
-              <div key={i} className="flex gap-2 leading-5">
-                <span style={{ color: C.mauve }} className="shrink-0">▸</span>
-                <span style={{ color: C.subtext }} className="text-xs">{a}</span>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-
       {/* ── Stack ── */}
       <Divider label={isEn ? " tools & frameworks " : " herramientas "} />
       <div className="flex flex-wrap gap-1 pl-1 mb-1">
         {(d.stack ?? []).map((t) => (
-          <Tag key={t} color={C.mauve}>{t}</Tag>
+          <Tag key={t} color={C.red}>{t}</Tag>
         ))}
       </div>
 

@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { OutputLine, Lang } from "@/app/lib/types";
 import { runCommand, Banner } from "@/app/lib/commands";
+import Projects from "@/app/components/commands/projects";
 
 const PROMPT_HOST = "0xGeN02@arch";
 const PROMPT_DIR  = "~/portfolio";
@@ -19,6 +20,7 @@ function Prompt({ host, dir }: { host: string; dir: string }) {
 
 export default function Terminal() {
   const [lang, setLang] = useState<Lang>("en");
+  const [projectsOpen, setProjectsOpen] = useState(false);
   const [history, setHistory] = useState<OutputLine[]>(() => [
     {
       id: crypto.randomUUID(),
@@ -33,6 +35,15 @@ export default function Terminal() {
   const bottomRef  = useRef<HTMLDivElement>(null);
   const inputRef   = useRef<HTMLInputElement>(null);
 
+  // Close projects modal on Escape
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setProjectsOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   // Auto-scroll to bottom whenever history changes
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -45,6 +56,10 @@ export default function Terminal() {
 
   const clearHistory = useCallback(() => {
     setHistory([]);
+  }, []);
+
+  const openProjects = useCallback(() => {
+    setProjectsOpen(true);
   }, []);
 
   const appendLine = useCallback((line: OutputLine) => {
@@ -69,7 +84,7 @@ export default function Terminal() {
     });
 
     // Run
-    const ctx = { lang, setLang, clearHistory };
+    const ctx = { lang, setLang, clearHistory, openProjects };
     const result = runCommand(raw, ctx);
 
     if (result !== null && result !== undefined) {
@@ -84,7 +99,7 @@ export default function Terminal() {
     setCmdHistory((prev) => [raw, ...prev.filter((c) => c !== raw)].slice(0, 100));
     setHistoryIndex(-1);
     setInput("");
-  }, [input, lang, appendLine, clearHistory]);
+  }, [input, lang, appendLine, clearHistory, openProjects]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -130,6 +145,34 @@ export default function Terminal() {
       style={{ background: "#1e1e2e" }}
       onClick={handleTerminalClick}
     >
+      {/* ── Projects overlay ── */}
+      {projectsOpen && (
+        <div
+          className="fixed inset-0 z-50 overflow-y-auto"
+          style={{ background: "rgba(17,17,27,0.97)", backdropFilter: "blur(4px)" }}
+        >
+          {/* Header bar */}
+          <div
+            className="sticky top-0 flex items-center justify-between px-6 py-3 z-10"
+            style={{ background: "#181825", borderBottom: "1px solid #313244" }}
+          >
+            <span className="font-mono text-sm" style={{ color: "#cba6f7" }}>
+              {lang === "en" ? "~/projects" : "~/proyectos"}
+            </span>
+            <button
+              onClick={(e) => { e.stopPropagation(); setProjectsOpen(false); }}
+              className="font-mono text-xs px-3 py-1 rounded hover:opacity-80 transition-opacity"
+              style={{ background: "#313244", color: "#f38ba8", border: "1px solid #45475a" }}
+            >
+              [esc] close
+            </button>
+          </div>
+          {/* Grid */}
+          <div className="max-w-5xl mx-auto px-6 py-6">
+            <Projects lang={lang} />
+          </div>
+        </div>
+      )}
       {/* Terminal window chrome */}
       <div
         className="flex items-center gap-2 px-4 py-2 select-none sticky top-0 z-10"

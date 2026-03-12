@@ -84,7 +84,13 @@ export const data: Record<
     };
     stack?: string[];
     skills: { category: string; items: string[] }[];
-    projects: { name: string; desc: string; lang: string; url: string }[];
+    projects: {
+      name: string;
+      desc: string;
+      lang: string;
+      url: string;
+      image?: string;
+    }[];
     experience: {
       company: string;
       role: string;
@@ -147,33 +153,38 @@ export const data: Record<
     projects: [
       {
         name: "PostQuantumEVM",
-        desc: "Research prototype exploring quantum-resistant signature schemes and integration layers for EVM-based smart contracts. Focused on interoperability and gas-cost tradeoffs.",
+        desc: "Fork of the Reth Ethereum execution client integrating post-quantum algorithms as EVM precompiles — Dilithium signatures (0x101), Kyber key encapsulation (0x102), BLAKE3 hashing (0x100). Custom P2P network, JSON-RPC API, and Qiskit integration for quantum circuit simulation.",
         lang: "Solidity / Rust / Python",
         url: "https://github.com/0xGeN02/PostQuantumEVM",
+        image: "/image/pq_evm.png",
       },
       {
         name: "HyDE",
-        desc: "HyDE is a modular, script-based framework designed to transform Hyprland into a fully functional and highly aesthetic Desktop Environment on Arch Linux.",
+        desc: "Modular, script-based framework that transforms Hyprland into a fully functional and aesthetic Desktop Environment on Arch Linux — custom bars, app launchers, theme management and wallpaper engine.",
         lang: "Python / Shell",
         url: "https://github.com/HyDE-Project/HyDE",
+        image: "/image/hyde.png",
       },
       {
         name: "Pokemon Team Generator",
-        desc: "Competitive Pokémon team generator based on sorting algorithm searches such as BubbleSort.",
+        desc: "CLI tool that builds competitive Pokémon teams using three sorting algorithms (Timsort, Quicksort, BubbleSort) for candidate ranking. Outputs full team analysis: stats, movesets, type matchups and algorithm benchmark times.",
         lang: "Python",
         url: "https://github.com/0xGeN02/PokemonTeamGenerator",
+        image: "/image/pkmn_team_generator.png",
       },
       {
         name: "IoT House",
-        desc: "Raspberry Pi-based home automation system integrating IoT sensors with custom workflows using N8N.",
+        desc: "Home automation system on Raspberry Pi monitoring multi-room temperature, water flow and power consumption. Data streams via MQTT, processed with N8N workflows, and visualised in a real-time Grafana dashboard.",
         lang: "Python / N8N / Grafana",
         url: "https://github.com/0xGeN02/iot_house",
+        image: "/image/iot_house.png",
       },
       {
         name: "CertyLex",
-        desc: "A domain-specific framework that codifies legal primitives into audited smart-contract patterns used by CertyChain for verifiable credentials and claims.",
+        desc: "Domain-specific framework codifying legal primitives into audited smart-contract patterns for CertyChain's verifiable credentials and on-chain claims infrastructure.",
         lang: "Python / TypeScript",
         url: "https://github.com/0xGeN02/CertyLex",
+        image: "/image/certylex.png",
       },
     ],
     experience: [
@@ -190,7 +201,7 @@ export const data: Record<
         desc: "Led the design and delivery of CertyChain's on-chain identity primitives, smart-contract libraries, and developer tooling — including audits and CI/CD for secure deployments.",
       },
       {
-        company: "metlabs",
+        company: "Metlabs",
         role: "Web3 Backend Developer",
         period: "2025",
         desc: "Implemented backend services and integrations for DeFi dashboards, wallet interactions, and on-chain data indexing using Node.js and Solidity tooling.",
@@ -283,33 +294,38 @@ export const data: Record<
     projects: [
       {
         name: "PostQuantumEVM",
-        desc: "Prototipo de investigación sobre esquemas de firma resistentes a computación cuántica e integración con contratos EVM, evaluando interoperabilidad y costes de gas.",
+        desc: "Fork del cliente de ejecución Ethereum Reth que integra algoritmos post-cuánticos como precompilados EVM — firmas Dilithium (0x101), encapsulación de claves Kyber (0x102), hashing BLAKE3 (0x100). Red P2P personalizada, API JSON-RPC e integración con Qiskit para simulación cuántica.",
         lang: "Solidity / Rust / Python",
         url: "https://github.com/0xGeN02/PostQuantumEVM",
+        image: "/image/pq_evm.png",
       },
       {
         name: "HyDE",
-        desc: "HyDE es un framework modular basado en scripts para transformar Hyprland en un entorno de escritorio completo y estético sobre Arch Linux.",
+        desc: "Framework modular basado en scripts que transforma Hyprland en un entorno de escritorio completo y estético sobre Arch Linux — barras personalizadas, lanzadores de apps, gestión de temas y motor de fondos de pantalla.",
         lang: "Python / Shell",
         url: "https://github.com/HyDE-Project/HyDE",
+        image: "/image/hyde.png",
       },
       {
         name: "Pokemon Team Generator",
-        desc: "Generador de equipos Pokémon competitivo basado en búsquedas por algoritmos de ordenación como BubbleSort.",
+        desc: "Herramienta CLI que construye equipos Pokémon competitivos usando tres algoritmos de ordenación (Timsort, Quicksort, BubbleSort) para el ranking de candidatos. Muestra análisis completo: stats, movimientos, matchups de tipos y tiempos de benchmark por algoritmo.",
         lang: "Python",
         url: "https://github.com/0xGeN02/PokemonTeamGenerator",
+        image: "/image/pkmn_team_generator.png",
       },
       {
         name: "IoT House",
-        desc: "Sistema de automatización del hogar basado en Raspberry Pi, integrando sensores IoT con flujos de trabajo personalizados usando N8N.",
+        desc: "Sistema de automatización del hogar en Raspberry Pi que monitoriza temperatura por habitaciones, flujo de agua y consumo eléctrico. Los datos se transmiten vía MQTT, se procesan con flujos N8N y se visualizan en un dashboard Grafana en tiempo real.",
         lang: "Python / N8N / Grafana",
         url: "https://github.com/0xGeN02/iot_house",
+        image: "/image/iot_house.png",
       },
       {
         name: "CertyLex",
-        desc: "Framework que codifica primitivas legales en patrones de smart contracts auditados, usado por CertyChain para credenciales y claims verificables.",
+        desc: "Framework específico de dominio que codifica primitivas legales en patrones de smart contracts auditados para la infraestructura de credenciales verificables y claims on-chain de CertyChain.",
         lang: "Python / TypeScript",
         url: "https://github.com/0xGeN02/CertyLex",
+        image: "/image/certylex.png",
       },
     ],
     experience: [
@@ -326,7 +342,7 @@ export const data: Record<
         desc: "Lideré diseño y entrega de primitivas de identidad on-chain, librerías de smart contracts y tooling para desarrolladores — incluyendo auditorías y CI/CD para despliegues seguros.",
       },
       {
-        company: "metlabs",
+        company: "Metlabs",
         role: "Backend Web3",
         period: "2025",
         desc: "Implementé servicios backend e integraciones para dashboards DeFi, interacciones con wallets e indexación on-chain usando Node.js y herramientas Solidity.",

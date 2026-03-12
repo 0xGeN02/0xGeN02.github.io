@@ -3,7 +3,6 @@ import React from "react";
 import { Command, CommandContext, Lang } from "./types";
 import Whoami from "@/app/components/commands/whoami";
 import Skills from "@/app/components/commands/skills";
-import Projects from "@/app/components/commands/projects";
 import Experience from "@/app/components/commands/experience";
 import Education from "@/app/components/commands/education";
 import Contact from "@/app/components/commands/contact";
@@ -90,7 +89,14 @@ export const COMMANDS: Command[] = [
   {
     name: "projects",
     description: { en: "GitHub projects", es: "proyectos" },
-    run: (_args, ctx) => <Projects lang={ctx.lang} />,
+    run: (_args, ctx) => {
+      ctx.openProjects();
+      return (
+        <span style={{ color: "#a6adc8", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          {ctx.lang === "en" ? "opening projects…" : "abriendo proyectos…"}
+        </span>
+      );
+    },
   },
   {
     name: "experience",

@@ -1,41 +1,77 @@
 "use client";
+import Image from "next/image";
 import { data } from "@/app/lib/data";
 import { Lang } from "@/app/lib/types";
 
+const C = {
+  mauve:   "#cba6f7",
+  blue:    "#89b4fa",
+  green:   "#a6e3a1",
+  surface: "#313244",
+  mantle:  "#181825",
+  overlay: "#6c7086",
+  subtext: "#a6adc8",
+  text:    "#cdd6f4",
+  border:  "#45475a",
+};
+
 export default function Projects({ lang }: { lang: Lang }) {
   const projects = data[lang].projects;
-  const headers =
-    lang === "en"
-      ? { name: "Project", desc: "Description", lang: "Lang" }
-      : { name: "Proyecto", desc: "Descripción", lang: "Lang" };
 
   return (
-    <div className="font-mono text-sm my-1">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {projects.map((p) => (
-        <div
+        <a
           key={p.name}
-          className="mb-3 pl-2"
-          style={{ borderLeft: "2px solid #cba6f7" }}
+          href={p.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col rounded overflow-hidden transition-transform hover:-translate-y-0.5"
+          style={{ background: C.mantle, border: `1px solid ${C.border}` }}
         >
-          <div className="flex items-baseline gap-3">
-            <a
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold hover:underline"
-              style={{ color: "#89b4fa" }}
-            >
-              {p.name}
-            </a>
+          {/* Image or accent bar */}
+          {p.image ? (
+            <div className="relative w-full h-40 overflow-hidden">
+              <Image
+                src={p.image}
+                alt={p.name}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: `linear-gradient(to bottom, transparent 50%, ${C.mantle} 100%)` }}
+              />
+            </div>
+          ) : (
+            <div className="h-1 w-full" style={{ background: C.mauve }} />
+          )}
+
+          {/* Body */}
+          <div className="flex flex-col flex-1 px-4 py-3 gap-2">
+            {/* Title row */}
+            <div className="flex items-center justify-between gap-2">
+              <span className="font-bold text-sm group-hover:underline" style={{ color: C.blue }}>
+                {p.name}
+              </span>
+              <span style={{ color: C.overlay }} className="text-xs shrink-0">↗</span>
+            </div>
+
+            {/* Lang badge */}
             <span
-              className="text-xs px-1.5 py-0.5 rounded"
-              style={{ background: "#313244", color: "#cba6f7" }}
+              className="self-start text-xs px-1.5 py-0.5 rounded font-mono"
+              style={{ background: C.surface, color: C.mauve, border: `1px solid ${C.mauve}33` }}
             >
               {p.lang}
             </span>
+
+            {/* Description */}
+            <p className="text-xs leading-5 flex-1" style={{ color: C.subtext }}>
+              {p.desc}
+            </p>
           </div>
-          <div style={{ color: "#a6adc8" }}>{p.desc}</div>
-        </div>
+        </a>
       ))}
     </div>
   );

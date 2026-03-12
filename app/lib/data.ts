@@ -1,5 +1,59 @@
 import { Lang } from "./types";
 
+// ── Shared skills (language-agnostic, same for en & es) ──
+export const SKILLS: { category: string; items: string[] }[] = [
+  {
+    category: "Languages",
+    items: [
+      "Python",
+      "TypeScript",
+      "Rust",
+      "Solidity",
+      "C++",
+      "Markdown",
+      "Shell",
+    ],
+  },
+  {
+    category: "AI / ML",
+    items: [
+      "PyTorch",
+      "Scikit-learn",
+      "Pandas",
+      "NumPy",
+      "MLflow",
+      "HuggingFace",
+    ],
+  },
+  {
+    category: "Data",
+    items: ["PostgreSQL", "Kafka", "Spark", "Airflow", "MongoDB"],
+  },
+  {
+    category: "Backend",
+    items: ["FastAPI", "Node.js", "Docker", "N8N", "GraphQL"],
+  },
+  {
+    category: "Blockchain",
+    items: [
+      "Solidity",
+      "Ethers.js",
+      "Foundry",
+      "EVM",
+      "OpenZeppelin",
+      "ChainLink",
+    ],
+  },
+  {
+    category: "Embedded / Systems",
+    items: ["C", "Rust", "Raspberry Pi", "Arduino"],
+  },
+  {
+    category: "Cloud",
+    items: ["AWS", "IPFS"],
+  },
+];
+
 // ── Personal data ──
 export const data: Record<
   Lang,
@@ -89,39 +143,7 @@ export const data: Record<
       "HuggingFace",
       "Git",
     ],
-    skills: [
-      {
-        category: "Languages",
-        items: ["Python", "TypeScript", "Rust", "Solidity", "C++"],
-      },
-      {
-        category: "AI / ML",
-        items: [
-          "PyTorch",
-          "Scikit-learn",
-          "Pandas",
-          "NumPy",
-          "MLflow",
-          "HuggingFace",
-        ],
-      },
-      {
-        category: "Data",
-        items: ["PostgreSQL", "Kafka", "Spark", "Airflow"],
-      },
-      {
-        category: "Backend",
-        items: ["FastAPI", "Node.js", "Docker"],
-      },
-      {
-        category: "Blockchain",
-        items: ["Solidity", "Ethers.js", "Foundry", "EVM"],
-      },
-      {
-        category: "Embedded / Systems",
-        items: ["C", "Rust", "Raspberry Pi", "Arduino"],
-      },
-    ],
+    skills: SKILLS,
     projects: [
       {
         name: "PostQuantumEVM",
@@ -251,39 +273,7 @@ export const data: Record<
       "HuggingFace",
       "Git",
     ],
-    skills: [
-      {
-        category: "Lenguajes",
-        items: ["Python", "TypeScript", "Rust", "Solidity", "C++"],
-      },
-      {
-        category: "IA / ML",
-        items: [
-          "PyTorch",
-          "Scikit-learn",
-          "Pandas",
-          "NumPy",
-          "MLflow",
-          "HuggingFace",
-        ],
-      },
-      {
-        category: "Datos",
-        items: ["PostgreSQL", "Kafka", "Spark", "Airflow"],
-      },
-      {
-        category: "Backend",
-        items: ["FastAPI", "Node.js", "Docker"],
-      },
-      {
-        category: "Blockchain",
-        items: ["Solidity", "Ethers.js", "Foundry", "EVM"],
-      },
-      {
-        category: "Embebido / Sistemas",
-        items: ["C", "Rust", "Raspberry Pi", "Arduino"],
-      },
-    ],
+    skills: SKILLS,
     projects: [
       {
         name: "PostQuantumEVM",

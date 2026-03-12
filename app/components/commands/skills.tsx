@@ -3,12 +3,13 @@ import { data } from "@/app/lib/data";
 import { Lang } from "@/app/lib/types";
 
 const CAT_COLORS: Record<string, string> = {
-  "Languages":  "#89b4fa",
-  "Lenguajes":  "#89b4fa",
-  "Web3":       "#cba6f7",
-  "Frontend":   "#a6e3a1",
-  "Backend":    "#fab387",
-  "DevOps":     "#f9e2af",
+  "Languages":          "#89b4fa",
+  "AI / ML":            "#cba6f7",
+  "Data":               "#89dceb",
+  "Backend":            "#fab387",
+  "Blockchain":         "#f9e2af",
+  "Embedded / Systems": "#a6e3a1",
+  "Cloud":              "#89dceb",
 };
 
 export default function Skills({ lang }: { lang: Lang }) {

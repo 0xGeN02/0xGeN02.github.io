@@ -18,6 +18,107 @@ const BANNER_EN = `
   ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
 `.trim();
 
+const HELP_COLORS = {
+  blue: "#89b4fa",
+  mauve: "#cba6f7",
+  flamingo: "#f2cdcd",
+  green: "#a6e3a1",
+  lavender: "#b4befe",
+  white: "#cdd6f4",
+  cyan: "#89dceb",
+} as const;
+
+const HELP_GROUPS = [
+  {
+    key: "highlights",
+    label: { en: "Highlights", es: "Destacados" },
+    commands: [
+      {
+        name: "blog",
+        description: { en: "blog posts", es: "artículos del blog" },
+        color: HELP_COLORS.flamingo,
+      },
+    ],
+  },
+  {
+    key: "profile",
+    label: { en: "Profile", es: "Perfil" },
+    commands: [
+      {
+        name: "whoami",
+        description: {
+          en: "fastfetch-style system info",
+          es: "info del sistema estilo fastfetch",
+        },
+        color: HELP_COLORS.blue,
+      },
+      {
+        name: "skills",
+        description: { en: "tech stack / skills", es: "stack técnico / habilidades" },
+        color: HELP_COLORS.blue,
+      },
+      {
+        name: "projects",
+        description: { en: "GitHub projects", es: "proyectos de GitHub" },
+        color: HELP_COLORS.mauve,
+      },
+      {
+        name: "experience",
+        description: { en: "work experience & education", es: "experiencia y formación" },
+        color: HELP_COLORS.blue,
+      },
+    ],
+  },
+  {
+    key: "connect",
+    label: { en: "Connect", es: "Contacto" },
+    commands: [
+      {
+        name: "contact",
+        description: { en: "contact info & social links", es: "contacto y redes sociales" },
+        color: HELP_COLORS.lavender,
+      },
+      {
+        name: "curl",
+        description: { en: "download curriculum / resume", es: "descargar currículum / CV" },
+        color: HELP_COLORS.green,
+      },
+    ],
+  },
+  {
+    key: "system",
+    label: { en: "System", es: "Sistema" },
+    commands: [
+      {
+        name: "banner",
+        description: { en: "show ASCII banner", es: "mostrar banner ASCII" },
+        color: HELP_COLORS.mauve,
+      },
+      {
+        name: "loadkeys [en|es]",
+        description: { en: "switch language", es: "cambiar idioma" },
+        color: HELP_COLORS.cyan,
+      },
+      {
+        name: "help",
+        description: { en: "list available commands", es: "listar comandos disponibles" },
+        color: HELP_COLORS.blue,
+      },
+    ],
+  },
+  {
+    key: "utilities",
+    label: { en: "Utilities", es: "Utilidades" },
+    commands: [
+      {
+        name: "clear",
+        description: { en: "clear terminal", es: "limpiar terminal" },
+        color: HELP_COLORS.white,
+      },
+    ],
+  },
+] as const;
+
 function Banner() {
   return (
     <div className="my-2">
@@ -41,29 +142,27 @@ function HelpOutput({ lang }: { lang: Lang }) {
   };
   const t = labels[lang];
 
-  const cmds = [
-    { name: "help",       en: "list available commands",         es: "listar comandos disponibles" },
-    { name: "whoami",     en: "fastfetch-style system info",     es: "info del sistema estilo fastfetch" },
-    { name: "skills",     en: "tech stack / skills",             es: "stack técnico / habilidades" },
-    { name: "projects",   en: "GitHub projects",                 es: "proyectos de GitHub" },
-    { name: "experience", en: "work experience & education",     es: "experiencia y formación" },
-    { name: "contact",    en: "contact info & social links",     es: "contacto y redes sociales" },
-    { name: "curl",      en: "download curriculum / resume",     es: "descargar currículum / CV" },
-    { name: "blog",       en: "blog posts",                      es: "artículos del blog" },
-    { name: "banner",     en: "show ASCII banner",               es: "mostrar banner ASCII" },
-    { name: "loadkeys [en|es]", en: "switch language",              es: "cambiar idioma" },
-    { name: "clear",      en: "clear terminal",                  es: "limpiar terminal" },
-  ];
-
   return (
     <div className="font-mono text-sm my-1">
       <div style={{ color: "#6c7086" }} className="mb-2">{t.usage}</div>
-      {cmds.map((c) => (
-        <div key={c.name} className="flex gap-2 mb-0.5">
-          <span style={{ color: "#89b4fa" }} className="min-w-[20ch]">
-            {c.name}
-          </span>
-          <span style={{ color: "#a6adc8" }}>{lang === "en" ? c.en : c.es}</span>
+      {HELP_GROUPS.map((group, idx) => (
+        <div key={group.key} className={idx === 0 ? "" : "mt-3 pt-2 border-t border-[#313244]"}>
+          <div
+            className="mb-1 text-[0.7rem] uppercase tracking-[0.3em]"
+            style={{ color: "#6c7086" }}
+          >
+            {group.label[lang]}
+          </div>
+          {group.commands.map((cmd) => (
+            <div key={cmd.name} className="flex gap-2 mb-0.5">
+              <span style={{ color: cmd.color }} className="min-w-[20ch]">
+                {cmd.name}
+              </span>
+              <span style={{ color: "#a6adc8" }}>
+                {lang === "en" ? cmd.description.en : cmd.description.es}
+              </span>
+            </div>
+          ))}
         </div>
       ))}
     </div>

@@ -1,0 +1,242 @@
+/*
+HyDE provides xdg/share/fastfetch/presets/hyde/*.config.jsonc files for different layouts. 
+You can also create your own config.jsonc file in the same directory to create a custom theme. 
+
+To test HyDE's fastfetch theme, run:
+fastfetch --config hyde/*.jsonc
+
+*/
+
+/*
+    Dev @0xGeN02
+*/
+
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "source": "~/fastfetch/src/logo/ascii/arch_penguin.txt", // need to build fastfetch localy with logo in ~/fastfetch/logo/ascii/*.txt
+    "padding": {
+        "top": 2
+    },
+    "color": {
+      "1": "cyan",
+      "2": "black",
+      "3": "white",
+      "4": "yellow"
+    }
+  },
+  "display": {
+    "separator": " : "
+  },
+  "modules": [
+    {
+      "type": "command",
+      "key": "  ",
+      "keyColor": "blue",
+      "text": "splash=$(hyprctl splash);echo $splash"
+    },
+    {
+      "type": "custom",
+      "format": "┌───────────────────────────────────────────────────────────────────┐"
+    },
+    {
+      "type": "chassis",
+      "key": "  󰇺 Chassis   ",
+      "format": "{1} {2} {3}"
+    },
+    {
+      "type": "bios",
+      "key": "  󰇺 BIOS      ",
+      "format": "{1} {2} {3}"
+    },
+    {
+      "type": "os",
+      "key": "  󰣇 OS        ",
+      "format": "{2}",
+      "keyColor": "red"
+    },
+    {
+      "type": "kernel",
+      "key": "   Kernel    ",
+      "format": "{2}",
+      "keyColor": "red"
+    },
+    {
+      "type": "packages",
+      "key": "  󰏗 Packages  ",
+      "keyColor": "green"
+    },
+    {
+      "type": "display",
+      "key": "  󰍹 Display   ",
+      "format": "{1}x{2} @ {3}Hz [{7}]",
+      "keyColor": "green"
+    },
+    {
+      "type": "terminal",
+      "key": "   Terminal  ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "shell",
+      "key": "    Shell    ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "wm",
+      "key": "  󱗃 WM        ",
+      "format": "{2}",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "host",
+      "key": "  󰣇 Host      ",
+      "format": "{1} {2} {3} {4} {5} {6}"
+    },
+    {
+      "type": "custom",
+      "format": "└───────────────────────────────────────────────────────────────────┘"
+    },
+    "break",
+    {
+      "type": "title",
+      "key": "  ",
+      "format": "{6} {7} {8}"
+    },
+    {
+      "type": "custom",
+      "format": "┌───────────────────────────────────────────────────────────────────┐"
+    },
+    {
+      "type": "cpu",
+      "format": "{1} @ {7}",
+      "key": "   CPU       ",
+      "keyColor": "blue"
+    },
+    {
+      "type": "gpu",
+      "format": "{1} {2}",
+      "key": "  󰊴 GPU       ",
+      "keyColor": "blue"
+    },
+    {
+      "type": "gpu",
+      "format": "{3}",
+      "key": "   GPU Driver",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "memory",
+      "key": "   Memory    ",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "disk",
+      "key": "  󱦟 OS Age    ",
+      "folders": "/",
+      "keyColor": "red",
+      "format": "{days} days"
+    },
+    {
+      "type": "uptime",
+      "key": "  󱫐 Uptime    ",
+      "keyColor": "red"
+    },
+    {
+      "type": "custom",
+      "format": "└───────────────────────────────────────────────────────────────────┘"
+    },
+    "break",
+    {
+      "type": "media",
+      "key": "  󰓇 Now Playing   ",
+      "format": "{?artist}{artist} - {?}{title}",
+      "keyColor": "cyan"
+    },
+
+    {
+      "type": "custom",
+      "format": "──────────────────────────────────────────────────────────────────────────────────────"
+    },
+    {
+      "type": "opengl",
+      "key": "  󰍹 OpenGL        ",
+      "format": "{1} {2} {3} {4} {5}"
+    },
+    {
+      "type": "opencl",
+      "key": "  󰍹 OpenCL        ",
+      "format": "{1} {2} {3}"
+    },
+    {
+      "type": "processes",
+      "key": "   Processes     ",
+      "format": "{1}"
+    },
+    {
+      "type": "cpuusage",
+      "key": "   CPU Usage     ",
+      "format": "Avg: {avg}% {avg-bar} | Max: {max}% (Core {max-index}) | Min: {min}% (Core {min-index})",
+      "keyColor": "blue"
+    },
+    {
+      "type": "cpucache",
+      "key": "   CPU Cache     ",
+      "format": "{1} {2}"
+    },
+    {
+      "type": "terminaltheme",
+      "key": "   Terminal Theme",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "theme",
+      "key": "  󰣇 Theme         ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "weather",
+      "key": "  󰇺 Weather       ",
+      "format": "{1}",
+      "keyColor": "green",
+      "location": "Santiago_de_Compostela"
+    },
+    {
+      "type": "bluetooth",
+      "key": "  󰂯 Bluetooth     ",
+      "format": /*\u001b[36mName     => */"\u001b[0m{1}\n                                             \u001b[36mAddress  \u001b[37m=> \u001b[0m{2}\n                                             \u001b[37mType \u001b[0m: {3}    \u001b[37mConnected \u001b[0m: {5}",
+      "keyColor": "blue"
+    },
+    {
+      "type": "wifi",
+      "key": "  󰂯 Wifi          ",
+      "format": /*\u001b[36mSSID     => */"\u001b[0m{4}\n                                             \u001b[36mBSSID    \u001b[37m=> \u001b[0m{5}\n                                             \u001b[36mProtocol \u001b[37m=> \u001b[0m{6}\n                                             \u001b[37mSec. Protocol \u001b[0m: {10}    \u001b[37mQuality     \u001b[0m: {7}\n                                             \u001b[37mIface. Status \u001b[0m: {2}      \u001b[37mTx_rate     \u001b[0m: {9}\n                                             \u001b[37mInterface     \u001b[0m: {1}   \u001b[37mRx_rate     \u001b[0m: {8}\n                                             \u001b[37mChan. Number  \u001b[0m: {12}      \u001b[37mChan. Band  \u001b[0m: {13} GHz\n",
+      "keyColor": "blue"
+    },
+    {
+      "type": "localip",
+      "key": "  󱫐 Local Network ",
+      "keyColor": "blue",
+      "format": "\u001b[0m{ipv4}\n                                              \u001b[32mIPv6 => \u001b[0m{ipv6}\n                                              \u001b[32mMAC  => \u001b[0m{mac}\n                                              \u001b[37mInterface \u001b[0m: {ifname}   \u001b[37mMTU  \u001b[0m: {mtu}\n                                              \u001b[37mDefault   \u001b[0m: {is-default-route}",
+      "defaultRouteOnly": false,
+      "showIpv6": true,
+      "showIpv4": true,
+      "showAllIps": true,
+      "showFlags": true,
+      "showMtu": true,
+      "showMac": true,
+      "showLoop": false,
+      "showPrefixLen": true
+    },
+    {
+      "type": "custom",
+      "format": "───────────────────────────────────────────────────────────────────────────────────────"
+    },
+    {
+      "type": "colors",
+      "paddingLeft": 2,
+      "symbol": "circle"
+    },
+    "break"
+  ]
+}

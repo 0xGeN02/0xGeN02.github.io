@@ -1,2 +1,99 @@
 @import "tailwindcss";
 
+/* ── Catppuccin Mocha palette ── */
+:root {
+  --ctp-base:    #1e1e2e;
+  --ctp-mantle:  #181825;
+  --ctp-crust:   #11111b;
+  --ctp-surface0:#313244;
+  --ctp-surface1:#45475a;
+  --ctp-surface2:#585b70;
+  --ctp-overlay0:#6c7086;
+  --ctp-overlay1:#7f849c;
+  --ctp-text:    #cdd6f4;
+  --ctp-subtext0:#a6adc8;
+  --ctp-subtext1:#bac2de;
+  --ctp-lavender:#b4befe;
+  --ctp-blue:    #89b4fa;
+  --ctp-sapphire:#74c7ec;
+  --ctp-sky:     #89dceb;
+  --ctp-teal:    #94e2d5;
+  --ctp-green:   #a6e3a1;
+  --ctp-yellow:  #f9e2af;
+  --ctp-peach:   #fab387;
+  --ctp-maroon:  #eba0ac;
+  --ctp-red:     #f38ba8;
+  --ctp-mauve:   #cba6f7;
+  --ctp-pink:    #f5c2e7;
+  --ctp-flamingo:#f2cdcd;
+  --ctp-rosewater:#f5e0dc;
+}
+
+/* ── Base ── */
+html, body {
+  background-color: var(--ctp-base);
+  color: var(--ctp-text);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── CRT scanlines overlay ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.07) 2px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── CRT vignette ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.45) 100%);
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ── Blinking cursor ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1em;
+  background-color: var(--ctp-mauve);
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+/* ── Terminal scrollbar ── */
+.terminal-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.terminal-scroll::-webkit-scrollbar-track {
+  background: var(--ctp-mantle);
+}
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background: var(--ctp-surface1);
+  border-radius: 2px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--ctp-mauve);
+  color: var(--ctp-base);
+}
+

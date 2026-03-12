@@ -1,9 +1,14 @@
+"use client";
+import { useState } from "react";
+import BootSequence from "@/app/components/BootSequence";
+import Terminal from "@/app/components/Terminal";
+
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1 className="text-4xl font-bold text-zinc-800 dark:text-zinc-200">
-        XGeN02 Website
-      </h1>
-    </div>
+  const [booting, setBooting] = useState(true);
+
+  return booting ? (
+    <BootSequence lang="en" onDone={() => setBooting(false)} />
+  ) : (
+    <Terminal />
   );
 }

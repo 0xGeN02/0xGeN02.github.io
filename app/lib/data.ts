@@ -134,7 +134,7 @@ export const data: Record<
     ],
     status: {
       name: "M. Mateo Delgado",
-      type: "Full-time · Part Time",
+      type: "Full-time",
       focus: "ML Engineering · Quantitative Research · Blockchain",
       location: "Remote · Spain",
     },
@@ -241,7 +241,7 @@ export const data: Record<
         bullets: [
           "Intensive programme specialising in quantum computing fundamentals: quantum algorithms, qubits and quantum information processing",
           "Explored nanorobotics and jet engine design at the intersection of quantum mechanics and advanced engineering systems",
-          "Grade: A−",
+          "Grade: A-",
         ],
       },
     ],
@@ -296,7 +296,7 @@ export const data: Record<
     ],
     status: {
       name: "M. Mateo Delgado",
-      type: "Jornada completa · Prácticas",
+      type: "Jornada completa (Full-time)",
       focus: "ML Engineering · Análisis Cuantitativo · Blockchain",
       location: "Remoto · España",
     },

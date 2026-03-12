@@ -11,6 +11,7 @@ export interface CommandContext {
   setLang: (l: Lang) => void;
   clearHistory: () => void;
   openProjects: () => void;
+  openContact: () => void;
 }
 
 export interface Command {

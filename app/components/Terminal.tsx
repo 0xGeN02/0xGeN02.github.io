@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { OutputLine, Lang } from "@/app/lib/types";
 import { runCommand, Banner } from "@/app/lib/commands";
 import Projects from "@/app/components/commands/projects";
+import Contact from "@/app/components/commands/contact";
 
 const PROMPT_HOST = "0xGeN02@arch";
 const PROMPT_DIR  = "~/portfolio";
@@ -21,6 +22,7 @@ function Prompt({ host, dir }: { host: string; dir: string }) {
 export default function Terminal() {
   const [lang, setLang] = useState<Lang>("en");
   const [projectsOpen, setProjectsOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [history, setHistory] = useState<OutputLine[]>(() => [
     {
       id: crypto.randomUUID(),
@@ -38,7 +40,7 @@ export default function Terminal() {
   // Close projects modal on Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setProjectsOpen(false);
+      if (e.key === "Escape") { setProjectsOpen(false); setContactOpen(false); }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -49,10 +51,10 @@ export default function Terminal() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
-  // Keep focus on input when clicking anywhere in the terminal
+  // Keep focus on input when clicking anywhere in the terminal (not when a modal is open)
   const handleTerminalClick = useCallback(() => {
-    inputRef.current?.focus();
-  }, []);
+    if (!projectsOpen && !contactOpen) inputRef.current?.focus();
+  }, [projectsOpen, contactOpen]);
 
   const clearHistory = useCallback(() => {
     setHistory([]);
@@ -60,6 +62,10 @@ export default function Terminal() {
 
   const openProjects = useCallback(() => {
     setProjectsOpen(true);
+  }, []);
+
+  const openContact = useCallback(() => {
+    setContactOpen(true);
   }, []);
 
   const appendLine = useCallback((line: OutputLine) => {
@@ -84,7 +90,7 @@ export default function Terminal() {
     });
 
     // Run
-    const ctx = { lang, setLang, clearHistory, openProjects };
+    const ctx = { lang, setLang, clearHistory, openProjects, openContact };
     const result = runCommand(raw, ctx);
 
     if (result !== null && result !== undefined) {
@@ -99,7 +105,7 @@ export default function Terminal() {
     setCmdHistory((prev) => [raw, ...prev.filter((c) => c !== raw)].slice(0, 100));
     setHistoryIndex(-1);
     setInput("");
-  }, [input, lang, appendLine, clearHistory, openProjects]);
+  }, [input, lang, appendLine, clearHistory, openProjects, openContact]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -145,6 +151,33 @@ export default function Terminal() {
       style={{ background: "#1e1e2e" }}
       onClick={handleTerminalClick}
     >
+      {/* ── Contact overlay ── */}
+      {contactOpen && (
+        <div
+          className="fixed inset-0 z-50 overflow-y-auto"
+          style={{ background: "rgba(17,17,27,0.97)", backdropFilter: "blur(4px)" }}
+        >
+          <div
+            className="sticky top-0 flex items-center justify-between px-6 py-3 z-10"
+            style={{ background: "#181825", borderBottom: "1px solid #313244" }}
+          >
+            <span className="font-mono text-sm" style={{ color: "#89b4fa" }}>
+              {lang === "en" ? "~/contact" : "~/contacto"}
+            </span>
+            <button
+              onClick={(e) => { e.stopPropagation(); setContactOpen(false); }}
+              className="font-mono text-xs px-3 py-1 rounded hover:opacity-80 transition-opacity"
+              style={{ background: "#313244", color: "#f38ba8", border: "1px solid #45475a" }}
+            >
+              [esc] close
+            </button>
+          </div>
+          <div className="max-w-2xl mx-auto px-6 py-8">
+            <Contact lang={lang} />
+          </div>
+        </div>
+      )}
+
       {/* ── Projects overlay ── */}
       {projectsOpen && (
         <div

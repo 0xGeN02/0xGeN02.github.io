@@ -10,7 +10,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "0xGeN02 — terminal",
-  description: "Web3 dev · Arch Linux · Hyprland · CertyChain",
+  description: "BTC Maxi · ML · Don't tread on me · I use Arch BTW",
   icons: { icon: "/favicon.ico" },
 };
 

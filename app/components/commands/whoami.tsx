@@ -1,6 +1,17 @@
 "use client";
 import { data } from "@/app/lib/data";
 import { Lang } from "@/app/lib/types";
+import { FiMail, FiGithub, FiLinkedin } from "react-icons/fi";
+import { SiDiscord, SiX } from "react-icons/si";
+
+const iconMap: Record<string, React.ReactNode> = {
+  Email: <FiMail size={16} />,
+  GitHub: <FiGithub size={16} />,
+  LinkedIn: <FiLinkedin size={16} />,
+  Discord: <SiDiscord size={16} />,
+  Twitter: <SiX size={16} />,
+  X: <SiX size={16} />,
+};
 
 // Catppuccin Mocha
 const C = {
@@ -33,15 +44,21 @@ function Row({
   label,
   value,
   accent = C.mauve,
+  icon,
 }: {
   label: string;
   value: React.ReactNode;
   accent?: string;
+  icon?: React.ReactNode;
 }) {
   return (
-    <div className="flex gap-2 leading-6">
-      <span style={{ color: accent }} className="min-w-[12ch] shrink-0">{label}</span>
-      <span style={{ color: C.overlay }}>▸</span>
+    <div className="flex items-center gap-2 leading-6">
+      {icon ? (
+        <span style={{ color: accent, display: "flex", alignItems: "center" }}>{icon}</span>
+      ) : (
+        <span style={{ color: accent }} className="min-w-[12ch] shrink-0">{label}</span>
+      )}
+      <span style={{ color: C.overlay }}>│</span>
       <span style={{ color: C.text }}>{value}</span>
     </div>
   );
@@ -96,14 +113,14 @@ export default function Whoami({ lang }: { lang: Lang }) {
 
       {/* ── Identity ── */}
       <Divider label={isEn ? " identity " : " identidad "} />
-      <Row label={isEn ? "role"      : "rol"}         value={`${d.role} @ ${d.company}`} accent={C.green}  />
+      <Row label={isEn ? "name" : "nombre"} value={d.status.name} accent={C.green}   />
       <Row label={isEn ? "location"  : "ciudad"}      value={d.location}                 accent={C.sky}    />
       <Row label={isEn ? "learning"  : "aprendiendo"} value={d.learning}                 accent={C.yellow} />
       <Row label={isEn ? "interests" : "intereses"}   value={d.interests}                accent={C.peach}  />
 
       {/* ── Status ── */}
       <Divider label={isEn ? " status " : " estado "} />
-      <Row label={isEn ? "name" : "nombre"} value={d.status.name} accent={C.green}   />
+      <Row label={isEn ? "role"      : "rol"}         value={`${d.role} @ ${d.company}`} accent={C.green}  />
       <Row label={isEn ? "type"         : "tipo"}           value={d.status.type}         accent={C.sky}     />
       <Row label="focus"                                    value={d.status.focus}        accent={C.mauve}   />
       <Row label={isEn ? "location"     : "ubicación"}      value={d.status.location}     accent={C.yellow}  />
@@ -173,6 +190,7 @@ export default function Whoami({ lang }: { lang: Lang }) {
               c.value
             )
           }
+          icon={iconMap[c.label]}
           accent={C.lavender}
         />
       ))}

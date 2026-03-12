@@ -4,7 +4,6 @@ import { Command, CommandContext, Lang } from "./types";
 import Whoami from "@/app/components/commands/whoami";
 import Skills from "@/app/components/commands/skills";
 import Experience from "@/app/components/commands/experience";
-import Contact from "@/app/components/commands/contact";
 import Blog from "@/app/components/commands/blog";
 
 const BANNER_EN = `
@@ -26,8 +25,8 @@ function Banner() {
       >
         {BANNER_EN}
       </pre>
-      <div className="mt-1 text-xs" style={{ color: "#6c7086" }}>
-        Web3 dev · Arch Linux · Hyprland · I use Arch BTW
+      <div className="mt-1 mr-8 text-xs" style={{ color: "#6c7086" }}>
+        USD & EUR are ShitCoins · Epistula ad Romanos 8:31 · I use Arch BTW
       </div>
     </div>
   );
@@ -104,7 +103,14 @@ export const COMMANDS: Command[] = [
   {
     name: "contact",
     description: { en: "contact & socials", es: "contacto" },
-    run: (_args, ctx) => <Contact lang={ctx.lang} />,
+    run: (_args, ctx) => {
+      ctx.openContact();
+      return (
+        <span style={{ color: "#a6adc8", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          {ctx.lang === "en" ? "opening contact…" : "abriendo contacto…"}
+        </span>
+      );
+    },
   },
   {
     name: "blog",

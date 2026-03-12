@@ -20,24 +20,24 @@ export default function Projects({ lang }: { lang: Lang }) {
   const projects = data[lang].projects;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 gap-4">
       {projects.map((p) => (
         <a
           key={p.name}
           href={p.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex flex-col rounded overflow-hidden transition-transform hover:-translate-y-0.5"
+          className="group flex flex-col md:flex-row rounded-2xl overflow-hidden transition-transform hover:-translate-y-0.5"
           style={{ background: C.mantle, border: `1px solid ${C.border}` }}
         >
           {/* Image or accent bar */}
           {p.image ? (
-            <div className="relative w-full h-40 overflow-hidden">
+            <div className="relative w-full h-48 md:h-auto md:w-64 md:min-h-[220px] overflow-hidden">
               <Image
                 src={withBasePath(p.image)}
                 alt={p.name}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
               />
               <div
@@ -50,7 +50,7 @@ export default function Projects({ lang }: { lang: Lang }) {
           )}
 
           {/* Body */}
-          <div className="flex flex-col flex-1 px-4 py-3 gap-2">
+          <div className="flex flex-col flex-1 px-5 py-4 gap-3 md:py-6">
             {/* Title row */}
             <div className="flex items-center justify-between gap-2">
               <span className="font-bold text-sm group-hover:underline" style={{ color: C.blue }}>
@@ -68,7 +68,7 @@ export default function Projects({ lang }: { lang: Lang }) {
             </span>
 
             {/* Description */}
-            <p className="text-xs leading-5 flex-1" style={{ color: C.subtext }}>
+            <p className="text-sm leading-6 flex-1" style={{ color: C.subtext }}>
               {p.desc}
             </p>
           </div>

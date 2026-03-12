@@ -1,11 +1,12 @@
 "use client";
+import type { ReactNode } from "react";
 import { data } from "@/app/lib/data";
 import { withBasePath } from "@/app/lib/site";
 import { Lang } from "@/app/lib/types";
 import { FiMail, FiGithub, FiLinkedin } from "react-icons/fi";
 import { SiDiscord, SiX } from "react-icons/si";
 
-const iconMap: Record<string, React.ReactNode> = {
+const iconMap: Record<string, ReactNode> = {
   Email: <FiMail size={16} />,
   GitHub: <FiGithub size={16} />,
   LinkedIn: <FiLinkedin size={16} />,
@@ -35,7 +36,7 @@ function Divider({ label }: { label: string }) {
   const trailing = Math.max(0, 80 - label.length);
 
   return (
-    <div className="flex items-center gap-1 my-1 select-none overflow-hidden">
+    <div className="flex items-center gap-1 my-3 select-none overflow-hidden">
       <span style={{ color: C.surface }}>──</span>
       <span style={{ color: C.mauve }} className="whitespace-pre">{label}</span>
       <span style={{ color: C.surface }} className="overflow-hidden whitespace-nowrap">{"─".repeat(trailing)}</span>
@@ -50,9 +51,9 @@ function Row({
   icon,
 }: {
   label: string;
-  value: React.ReactNode;
+  value: ReactNode;
   accent?: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 }) {
   return (
     <div className="flex items-center gap-2 leading-6">
@@ -67,14 +68,43 @@ function Row({
   );
 }
 
-function Tag({ children, color = C.mauve }: { children: string; color?: string }) {
+function TimelineEntry({
+  period,
+  title,
+  subtitle,
+  details,
+}: {
+  period: string;
+  title: ReactNode;
+  subtitle?: ReactNode;
+  details?: ReactNode;
+}) {
   return (
-    <span
-      style={{ color, borderColor: color, borderWidth: 1, borderStyle: "solid" }}
-      className="rounded px-1 py-0 text-xs leading-5"
-    >
-      {children}
-    </span>
+    <div className="flex gap-3">
+      <span
+        style={{ color: C.overlay, fontVariantNumeric: "tabular-nums" }}
+        className="w-28 text-right shrink-0"
+      >
+        {period}
+      </span>
+      <span style={{ color: C.overlay }}>│</span>
+      <div className="flex-1">
+        <div className="leading-6">
+          {title}
+          {subtitle && (
+            <>
+              <span style={{ color: C.overlay }}>{"  @  "}</span>
+              <span style={{ color: C.blue }}>{subtitle}</span>
+            </>
+          )}
+        </div>
+        {details && (
+          <div style={{ color: C.subtext }} className="text-xs leading-5 mt-0.5">
+            {details}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -130,45 +160,28 @@ export default function Whoami({ lang }: { lang: Lang }) {
 
       {/* ── Experience ── */}
       <Divider label={isEn ? " experience " : " experiencia "} />
-      <div className="space-y-1">
+      <div className="space-y-2">
         {d.experience.map((exp, i) => (
-          <div key={i}>
-            <div className="leading-6">
-              <span style={{ color: C.overlay }}>{exp.period}</span>
-              <span style={{ color: C.overlay }}>{"  │  "}</span>
-              <span style={{ color: C.text }}>{exp.role}</span>
-              <span style={{ color: C.overlay }}>{"  @  "}</span>
-              <span style={{ color: C.blue }}>{exp.company}</span>
-            </div>
-            <div style={{ color: C.subtext }} className="pl-4 text-xs leading-5">
-              {exp.desc}
-            </div>
-          </div>
+          <TimelineEntry
+            key={i}
+            period={exp.period}
+            title={<span style={{ color: C.text }}>{exp.role}</span>}
+            subtitle={exp.company}
+            details={exp.desc}
+          />
         ))}
       </div>
 
       {/* ── Education ── */}
       <Divider label={isEn ? " education " : " formación "} />
-      <div className="space-y-1">
+      <div className="space-y-2">
         {d.education.map((edu, i) => (
-          <div key={i}>
-            <div className="leading-6">
-              <span style={{ color: C.overlay }}>{edu.period}</span>
-              <span style={{ color: C.overlay }}>{"  │  "}</span>
-              <span style={{ color: C.text }}>{edu.degree}</span>
-            </div>
-            <div style={{ color: C.subtext }} className="pl-4 text-xs leading-5">
-              {edu.institution}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Stack ── */}
-      <Divider label={isEn ? " tools & frameworks " : " herramientas "} />
-      <div className="flex flex-wrap gap-1 pl-1 mb-1">
-        {(d.stack ?? []).map((t) => (
-          <Tag key={t} color={C.red}>{t}</Tag>
+          <TimelineEntry
+            key={i}
+            period={edu.period}
+            title={<span style={{ color: C.text }}>{edu.degree}</span>}
+            details={edu.institution}
+          />
         ))}
       </div>
 
@@ -212,7 +225,7 @@ export default function Whoami({ lang }: { lang: Lang }) {
             style={{ color: C.green, borderColor: C.green, borderWidth: 1, borderStyle: "solid" }}
             className="rounded px-2 py-0.5 text-xs hover:opacity-80"
           >
-            {isEn ? "↓ download cv" : "↓ descargar cv"}
+            {isEn ? "↓ download CV" : "↓ descargar CV"}
           </a>
         </div>
       )}

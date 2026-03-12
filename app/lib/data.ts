@@ -81,7 +81,6 @@ export const data: Record<
       focus: string;
       location: string;
     };
-    stack?: string[];
     skills: { category: string; items: string[] }[];
     projects: {
       name: string;
@@ -138,16 +137,6 @@ export const data: Record<
       focus: "ML Engineering · Quantitative Research · Blockchain",
       location: "Remote · Spain",
     },
-    stack: [
-      "PyTorch",
-      "FastAPI",
-      "Next.js",
-      "Solidity",
-      "Foundry",
-      "Docker",
-      "HuggingFace",
-      "Git",
-    ],
     skills: SKILLS,
     projects: [
       {
@@ -300,16 +289,6 @@ export const data: Record<
       focus: "ML Engineering · Análisis Cuantitativo · Blockchain",
       location: "Remoto · España",
     },
-    stack: [
-      "PyTorch",
-      "FastAPI",
-      "Next.js",
-      "Solidity",
-      "Foundry",
-      "Docker",
-      "HuggingFace",
-      "Git",
-    ],
     skills: SKILLS,
     projects: [
       {

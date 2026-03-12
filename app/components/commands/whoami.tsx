@@ -103,7 +103,7 @@ export default function Whoami({ lang }: { lang: Lang }) {
 
       {/* ── Status ── */}
       <Divider label={isEn ? " status " : " estado "} />
-      <Row label={isEn ? "availability" : "disponibilidad"} value={d.status.availability} accent={C.green}   />
+      <Row label={isEn ? "name" : "nombre"} value={d.status.name} accent={C.green}   />
       <Row label={isEn ? "type"         : "tipo"}           value={d.status.type}         accent={C.sky}     />
       <Row label="focus"                                    value={d.status.focus}        accent={C.mauve}   />
       <Row label={isEn ? "location"     : "ubicación"}      value={d.status.location}     accent={C.yellow}  />

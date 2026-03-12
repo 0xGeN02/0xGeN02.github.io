@@ -77,7 +77,7 @@ export const data: Record<
     cvUrl?: string;
     portfolio?: { name: string; desc: string; url?: string }[];
     status: {
-      availability: string;
+      name: string;
       type: string;
       focus: string;
       location: string;
@@ -134,7 +134,7 @@ export const data: Record<
       },
     ],
     status: {
-      availability: "Open to opportunities",
+      name: "M. Mateo Delgado",
       type: "Full-time · Part Time",
       focus: "ML Engineering · Backend · Blockchain",
       location: "Remote · Spain",
@@ -275,7 +275,7 @@ export const data: Record<
       },
     ],
     status: {
-      availability: "Abierto a oportunidades",
+      name: "M. Mateo Delgado",
       type: "Jornada completa · Prácticas",
       focus: "ML Engineering · Backend · Blockchain",
       location: "Remoto · España",

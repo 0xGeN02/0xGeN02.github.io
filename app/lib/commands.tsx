@@ -27,7 +27,7 @@ function Banner() {
       >
         {BANNER_EN}
       </pre>
-      <div className="mt-1 mr-8 text-xs" style={{ color: "#6c7086" }}>
+      <div className="mt-1 pl-6 mr-8 text-xs" style={{ color: "#6c7086" }}>
         USD & EUR are ShitCoins · Epistula ad Romanos 8:31 · I use Arch BTW
       </div>
     </div>

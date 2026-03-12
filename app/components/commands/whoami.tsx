@@ -198,7 +198,7 @@ export default function Whoami({ lang }: { lang: Lang }) {
         />
       ))}
 
-      <div className="mt-2 select-none" style={{ color: C.surface }}>
+      <div className="mt-2 select-none overflow-hidden" style={{ color: C.surface }}>
         {"─".repeat(80)}
       </div>
 

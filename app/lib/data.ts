@@ -57,7 +57,7 @@ export const data: Record<
     role: "AI & Data Engineer",
     company: "Plexus",
     location: "Santiago de Compostela, Spain (Remote)",
-    learning: "Rust",
+    learning: "I am focusing on Quantitative Finance and Rust in my free time.",
     interests: "Coding · GYM · Anime · Economics",
     cvUrl: "/pdf/CV_March_2026_EN.pdf",
     achievements: [
@@ -75,7 +75,7 @@ export const data: Record<
     ],
     status: {
       availability: "Open to opportunities",
-      type: "Full-time · Internship",
+      type: "Full-time · Part Time",
       focus: "ML Engineering · Backend · Blockchain",
       location: "Remote · Spain",
     },
@@ -218,8 +218,9 @@ export const data: Record<
     role: "AI & Data Engineer",
     company: "Plexus",
     location: "Santiago de Compostela, España (Remoto)",
-    learning: "Rust",
-    interests: "Programar · Gym · Anime",
+    learning:
+      "En mi tiempo libre me estoy enfocando en Finanzas Cuantitativas y Rust.",
+    interests: "Programar · Gym · Anime · Economía",
     cvUrl: "/pdf/CV_March_2026_EN.pdf",
     achievements: [
       "Prácticas de AI & Data Engineering en Plexus — pipelines ML en producción e infraestructura de model-serving",

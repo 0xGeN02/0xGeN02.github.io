@@ -1,30 +1,5 @@
 import { Lang } from "./types";
 
-/* ── ASCII art (from /ascii/arch_penguin.txt) ──
-   $1 = mauve  #cba6f7
-   $2 = text   #cdd6f4
-   $3 = blue   #89b4fa
-   $4 = lavender #b4befe
-*/
-export const ASCII_ARCH = [
-  "        $1.       ",
-  "       $1/ $1\\      ",
-  "      $1/^  $1\\     ",
-  "     $1/  _  $1\\    ",
-  "    $1/  | | ~$1\\   ",
-  "   $1/.-'   '-.$1\\  ",
-];
-
-export const ASCII_PENGUIN = [
-  "       $2.--.  ",
-  "      |$3o$4_$3o $2| ",
-  "      |$4:_/ $2| ",
-  "     /$3/   \\ $2\\ ",
-  "    ($3|     | $2)",
-  "   $4/'\\_ _ _/`\\",
-  "   $2\\___)$4=$2(___/",
-];
-
 // ── Personal data ──
 export const data: Record<
   Lang,
@@ -35,20 +10,25 @@ export const data: Record<
     location: string;
     learning: string;
     interests: string;
-    system: {
-      os: string;
-      kernel: string;
-      wm: string;
-      shell: string;
-      terminal: string;
-      display: string;
-      theme: string;
+    headline?: string;
+    aboutBullets?: string[];
+    summary?: string;
+    achievements?: string[];
+    certifications?: {
+      name: string;
+      issuer?: string;
+      year?: string;
+      url?: string;
+    }[];
+    cvUrl?: string;
+    portfolio?: { name: string; desc: string; url?: string }[];
+    status: {
+      availability: string;
+      type: string;
+      focus: string;
+      location: string;
     };
-    hardware: {
-      cpu: string;
-      gpu: string[];
-      ram: string;
-    };
+    stack?: string[];
     skills: { category: string; items: string[] }[];
     projects: { name: string; desc: string; lang: string; url: string }[];
     experience: {
@@ -63,113 +43,158 @@ export const data: Record<
   }
 > = {
   en: {
-    bio: "Web3 developer specialized in Next.js, Solidity & Python. I use Arch BTW.",
-    role: "Web3 Developer",
-    company: "CertyChain",
+    // Headline & summary for CV-style rendering
+    headline: "Smart Systems · Machine Learning · Blockchain Architect",
+    summary:
+      "Engineer with a background spanning machine learning, blockchain systems, and embedded hardware. Currently focused on AI & data infrastructure at Plexus; previously architected a production-grade blockchain identity platform at CertyChain. I enjoy building where disciplines intersect — from training models to deploying smart contracts.",
+    bio: "Smart Systems Engineer specialised in ML, Web3 & systems programming.",
+    aboutBullets: [
+      "BSc Smart Systems Engineering · UIE, A Coruña (2022-2026)",
+      "Engineering Programme · Cambridge University, Girton College (2023)",
+      "Research: post-quantum cryptography on EVM",
+      "I use Arch BTW.",
+    ],
+    role: "AI & Data Engineer",
+    company: "Plexus",
     location: "Santiago de Compostela, Spain (Remote)",
-    learning: "GoLang & Rust",
-    interests: "Coding · GYM · Anime",
-    system: {
-      os: "Arch Linux",
-      kernel: "6.18-lts",
-      wm: "Hyprland",
-      shell: "zsh 5.9",
-      terminal: "kitty",
-      display: "1920x1080 @ 165Hz",
-      theme: "Catppuccin Mocha",
+    learning: "Rust",
+    interests: "Coding · GYM · Anime · Economics",
+    cvUrl: "/pdf/CV_March_2026_EN.pdf",
+    achievements: [
+      "Prototyped PostQuantumEVM: research on quantum-resistant cryptography for EVM chains",
+      "AI & Data Engineering internship at Plexus — built production ML data pipelines and model-serving infra",
+      "Led the architecture and implementation of CertyChain's identity smart-contract suite (production-ready)",
+      "Completed an Engineering Programme at Cambridge (Girton College, 2023)",
+    ],
+    certifications: [
+      {
+        name: "Smart Contracts Security (practical)",
+        issuer: "CertOrg",
+        year: "2025",
+      },
+    ],
+    status: {
+      availability: "Open to opportunities",
+      type: "Full-time · Internship",
+      focus: "ML Engineering · Backend · Blockchain",
+      location: "Remote · Spain",
     },
-    hardware: {
-      cpu: "AMD Ryzen 5 7600X @ 5.46 GHz",
-      gpu: ["NVIDIA GeForce RTX 4060", "AMD Raphael"],
-      ram: "18.75 GiB / 30.51 GiB (61%)",
-    },
+    stack: [
+      "PyTorch",
+      "FastAPI",
+      "Next.js",
+      "Solidity",
+      "Foundry",
+      "Docker",
+      "HuggingFace",
+      "Git",
+    ],
     skills: [
       {
         category: "Languages",
+        items: ["Python", "TypeScript", "Rust", "Solidity", "C++"],
+      },
+      {
+        category: "AI / ML",
         items: [
-          "TypeScript",
-          "JavaScript",
-          "Python",
-          "Rust",
-          "C",
-          "C++",
-          "Go (learning)",
+          "PyTorch",
+          "Scikit-learn",
+          "Pandas",
+          "NumPy",
+          "MLflow",
+          "HuggingFace",
         ],
       },
       {
-        category: "Web3",
-        items: ["Solidity", "Ethers.js", "Hardhat", "Foundry", "EVM"],
+        category: "Data",
+        items: ["PostgreSQL", "Kafka", "Spark", "Airflow"],
       },
-      { category: "Frontend", items: ["Next.js", "React", "Tailwind CSS"] },
-      { category: "Backend", items: ["Node.js", "FastAPI", "PostgreSQL"] },
       {
-        category: "DevOps",
-        items: ["Docker", "Git", "Linux", "Arch", "Hyprland"],
+        category: "Backend",
+        items: ["FastAPI", "Node.js", "Docker"],
+      },
+      {
+        category: "Blockchain",
+        items: ["Solidity", "Ethers.js", "Foundry", "EVM"],
+      },
+      {
+        category: "Embedded / Systems",
+        items: ["C", "Rust", "Raspberry Pi", "Arduino"],
       },
     ],
     projects: [
       {
         name: "PostQuantumEVM",
-        desc: "Post-quantum cryptography experiments on EVM",
-        lang: "Solidity/TS",
+        desc: "Research prototype exploring quantum-resistant signature schemes and integration layers for EVM-based smart contracts. Focused on interoperability and gas-cost tradeoffs.",
+        lang: "Solidity / Rust / Python",
         url: "https://github.com/0xGeN02/PostQuantumEVM",
       },
       {
-        name: "DeFiMetrics",
-        desc: "DeFi analytics & calculations toolkit",
-        lang: "Rust",
-        url: "https://github.com/0xGeN02/DeFiMetrics",
+        name: "HyDE",
+        desc: "HyDE is a modular, script-based framework designed to transform Hyprland into a fully functional and highly aesthetic Desktop Environment on Arch Linux.",
+        lang: "Python / Shell",
+        url: "https://github.com/HyDE-Project/HyDE",
       },
       {
         name: "CertyLex",
-        desc: "Smart contract legal framework for CertyChain",
-        lang: "Solidity",
+        desc: "A domain-specific framework that codifies legal primitives into audited smart-contract patterns used by CertyChain for verifiable credentials and claims.",
+        lang: "Python / TypeScript",
         url: "https://github.com/0xGeN02/CertyLex",
       },
       {
-        name: "arch_ros2_setup",
-        desc: "ROS2 setup scripts for Arch Linux",
-        lang: "Dockerfile",
-        url: "https://github.com/0xGeN02/arch_ros2_setup",
-      },
-      {
-        name: "tirios-challenge",
-        desc: "Technical challenge solution",
-        lang: "JavaScript",
-        url: "https://github.com/0xGeN02/tirios-challenge",
+        name: "pq-reth",
+        desc: "A post-quantum secure Ethereum client prototype, implementing quantum-resistant signature schemes and transaction validation logic in Rust.",
+        lang: "Rust / Solidity / HTML",
+        url: "https://github.com/0xGeN02/pq-reth",
       },
     ],
     experience: [
       {
+        company: "Plexus",
+        role: "AI & Data Engineer",
+        period: "2026",
+        desc: "Designing and implementing scalable data pipelines and model-serving infrastructure to support production ML workflows and analytics at Plexus.",
+      },
+      {
         company: "CertyChain",
-        role: "Web3 Developer",
-        period: "2024 — present",
-        desc: "Building smart contract infrastructure and blockchain tooling.",
+        role: "Blockchain Architect",
+        period: "2023 — 2025",
+        desc: "Led the design and delivery of CertyChain's on-chain identity primitives, smart-contract libraries, and developer tooling — including audits and CI/CD for secure deployments.",
       },
       {
         company: "metlabs",
-        role: "Web3 Frontend Developer",
-        period: "2023 — 2024",
-        desc: "DeFi dashboards and wallet integrations with Next.js + Ethers.js.",
+        role: "Web3 Backend Developer",
+        period: "2025",
+        desc: "Implemented backend services and integrations for DeFi dashboards, wallet interactions, and on-chain data indexing using Node.js and Solidity tooling.",
       },
     ],
     education: [
       {
-        institution: "Universidad de Santiago de Compostela",
-        degree: "Computer Engineering",
-        period: "2020 — present",
+        institution: "Universidad Intercontinental de la Empresa",
+        degree: "Smart Systems Engineering",
+        period: "2022 — 2026",
+      },
+      {
+        institution: "University of Cambridge",
+        degree: "Engineering Programme",
+        period: "2023",
       },
     ],
     contact: [
       {
         label: "Email",
-        value: "0xgen02@proton.me",
-        url: "mailto:0xgen02@proton.me",
+        value: "manuelmateodgl02@gmail.com",
+        url: "mailto:manuelmateodgl02@gmail.com",
       },
       {
         label: "GitHub",
         value: "github.com/0xGeN02",
         url: "https://github.com/0xGeN02",
+      },
+      {
+        label: "LinkedIn",
+        value: "linkedin.com/mateodelgadodevel",
+        url: "https://www.linkedin.com/in/mateodelgadodevel/",
       },
       {
         label: "Discord",
@@ -180,113 +205,157 @@ export const data: Record<
     blog: [],
   },
   es: {
-    bio: "Desarrollador Web3 especializado en Next.js, Solidity y Python. Uso Arch BTW.",
-    role: "Desarrollador Web3",
-    company: "CertyChain",
+    headline: "Smart Systems · Machine Learning · Arquitecto Blockchain",
+    summary:
+      "Ingeniero con experiencia en machine learning, sistemas blockchain y hardware embebido. Actualmente construyo infraestructura de IA y datos en Plexus; anteriormente diseñé la plataforma de identidad blockchain de CertyChain a nivel de producción. Me apasiona trabajar donde se cruzan disciplinas: desde entrenar modelos hasta desplegar smart contracts.",
+    bio: "Ingeniero de Sistemas Inteligentes especializado en IA/ML, Web3 y programación de sistemas.",
+    aboutBullets: [
+      "Grado en Smart Systems Engineering · UIE, A Coruña (2022-2026)",
+      "Programa de Ingeniería · Cambridge University, Girton College (2023)",
+      "Investigación: criptografía post-cuántica en EVM",
+      "Uso Arch BTW.",
+    ],
+    role: "AI & Data Engineer",
+    company: "Plexus",
     location: "Santiago de Compostela, España (Remoto)",
-    learning: "GoLang y Rust",
+    learning: "Rust",
     interests: "Programar · Gym · Anime",
-    system: {
-      os: "Arch Linux",
-      kernel: "6.18-lts",
-      wm: "Hyprland",
-      shell: "zsh 5.9",
-      terminal: "kitty",
-      display: "1920x1080 @ 165Hz",
-      theme: "Catppuccin Mocha",
+    cvUrl: "/pdf/CV_March_2026_EN.pdf",
+    achievements: [
+      "Prácticas de AI & Data Engineering en Plexus — pipelines ML en producción e infraestructura de model-serving",
+      "Lideré la arquitectura e implementación de la suite de smart contracts de identidad de CertyChain (producción)",
+      "Programa de Ingeniería en Cambridge (Girton College, 2023)",
+      "Prototipé PostQuantumEVM: investigación en criptografía resistente a la computación cuántica para EVM",
+    ],
+    certifications: [
+      {
+        name: "Seguridad en Smart Contracts (práctico)",
+        issuer: "CertOrg",
+        year: "2025",
+      },
+    ],
+    status: {
+      availability: "Abierto a oportunidades",
+      type: "Jornada completa · Prácticas",
+      focus: "ML Engineering · Backend · Blockchain",
+      location: "Remoto · España",
     },
-    hardware: {
-      cpu: "AMD Ryzen 5 7600X @ 5.46 GHz",
-      gpu: ["NVIDIA GeForce RTX 4060", "AMD Raphael"],
-      ram: "18.75 GiB / 30.51 GiB (61%)",
-    },
+    stack: [
+      "PyTorch",
+      "FastAPI",
+      "Next.js",
+      "Solidity",
+      "Foundry",
+      "Docker",
+      "HuggingFace",
+      "Git",
+    ],
     skills: [
       {
         category: "Lenguajes",
+        items: ["Python", "TypeScript", "Rust", "Solidity", "C++"],
+      },
+      {
+        category: "IA / ML",
         items: [
-          "TypeScript",
-          "JavaScript",
-          "Python",
-          "Rust",
-          "C",
-          "C++",
-          "Go (aprendiendo)",
+          "PyTorch",
+          "Scikit-learn",
+          "Pandas",
+          "NumPy",
+          "MLflow",
+          "HuggingFace",
         ],
       },
       {
-        category: "Web3",
-        items: ["Solidity", "Ethers.js", "Hardhat", "Foundry", "EVM"],
+        category: "Datos",
+        items: ["PostgreSQL", "Kafka", "Spark", "Airflow"],
       },
-      { category: "Frontend", items: ["Next.js", "React", "Tailwind CSS"] },
-      { category: "Backend", items: ["Node.js", "FastAPI", "PostgreSQL"] },
       {
-        category: "DevOps",
-        items: ["Docker", "Git", "Linux", "Arch", "Hyprland"],
+        category: "Backend",
+        items: ["FastAPI", "Node.js", "Docker"],
+      },
+      {
+        category: "Blockchain",
+        items: ["Solidity", "Ethers.js", "Foundry", "EVM"],
+      },
+      {
+        category: "Embebido / Sistemas",
+        items: ["C", "Rust", "Raspberry Pi", "Arduino"],
       },
     ],
     projects: [
       {
         name: "PostQuantumEVM",
-        desc: "Experimentos de criptografía post-cuántica en EVM",
-        lang: "Solidity/TS",
+        desc: "Prototipo de investigación sobre esquemas de firma resistentes a computación cuántica e integración con contratos EVM, evaluando interoperabilidad y costes de gas.",
+        lang: "Solidity / Rust / Python",
         url: "https://github.com/0xGeN02/PostQuantumEVM",
       },
       {
-        name: "DeFiMetrics",
-        desc: "Herramienta de analíticas y cálculos DeFi",
-        lang: "Rust",
-        url: "https://github.com/0xGeN02/DeFiMetrics",
+        name: "HyDE",
+        desc: "HyDE es un framework modular basado en scripts para transformar Hyprland en un entorno de escritorio completo y estético sobre Arch Linux.",
+        lang: "Python / Shell",
+        url: "https://github.com/HyDE-Project/HyDE",
       },
       {
         name: "CertyLex",
-        desc: "Framework legal en smart contracts para CertyChain",
-        lang: "Solidity",
+        desc: "Framework que codifica primitivas legales en patrones de smart contracts auditados, usado por CertyChain para credenciales y claims verificables.",
+        lang: "Python / TypeScript",
         url: "https://github.com/0xGeN02/CertyLex",
       },
       {
-        name: "arch_ros2_setup",
-        desc: "Scripts de configuración de ROS2 para Arch Linux",
-        lang: "Dockerfile",
-        url: "https://github.com/0xGeN02/arch_ros2_setup",
-      },
-      {
-        name: "tirios-challenge",
-        desc: "Solución a reto técnico",
-        lang: "JavaScript",
-        url: "https://github.com/0xGeN02/tirios-challenge",
+        name: "pq-reth",
+        desc: "Prototipo de cliente Ethereum con seguridad post-cuántica: implementa esquemas de firma resistentes a la computación cuántica y lógica de validación de transacciones en Rust.",
+        lang: "Rust / Solidity / HTML",
+        url: "https://github.com/0xGeN02/pq-reth",
       },
     ],
     experience: [
       {
+        company: "Plexus",
+        role: "AI & Data Engineer",
+        period: "2026",
+        desc: "Diseño e implementación de pipelines de datos escalables e infraestructura de model-serving para flujos ML en producción y analítica.",
+      },
+      {
         company: "CertyChain",
-        role: "Desarrollador Web3",
-        period: "2024 — presente",
-        desc: "Infraestructura de smart contracts y herramientas blockchain.",
+        role: "Arquitecto Blockchain",
+        period: "2023 — 2025",
+        desc: "Lideré diseño y entrega de primitivas de identidad on-chain, librerías de smart contracts y tooling para desarrolladores — incluyendo auditorías y CI/CD para despliegues seguros.",
       },
       {
         company: "metlabs",
-        role: "Desarrollador Frontend Web3",
-        period: "2023 — 2024",
-        desc: "Dashboards DeFi e integraciones de wallet con Next.js + Ethers.js.",
+        role: "Backend Web3",
+        period: "2025",
+        desc: "Implementé servicios backend e integraciones para dashboards DeFi, interacciones con wallets e indexación on-chain usando Node.js y herramientas Solidity.",
       },
     ],
     education: [
       {
-        institution: "Universidad de Santiago de Compostela",
-        degree: "Ingeniería Informática",
-        period: "2020 — presente",
+        institution: "Universidad Intercontinental de la Empresa",
+        degree: "Ingeniería en Sistemas Inteligentes",
+        period: "2022 — 2026",
+      },
+      {
+        institution: "University of Cambridge",
+        degree: "Programa de Ingeniería",
+        period: "2023",
       },
     ],
     contact: [
       {
         label: "Email",
-        value: "0xgen02@proton.me",
-        url: "mailto:0xgen02@proton.me",
+        value: "manuelmateodgl02@gmail.com",
+        url: "mailto:manuelmateodgl02@gmail.com",
       },
       {
         label: "GitHub",
         value: "github.com/0xGeN02",
         url: "https://github.com/0xGeN02",
+      },
+      {
+        label: "LinkedIn",
+        value: "linkedin.com/mateodelgadodevel",
+        url: "https://www.linkedin.com/in/mateodelgadodevel/",
       },
       {
         label: "Discord",

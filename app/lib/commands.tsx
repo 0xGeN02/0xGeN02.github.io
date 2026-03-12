@@ -52,7 +52,7 @@ function HelpOutput({ lang }: { lang: Lang }) {
     { name: "contact",    en: "contact info & social links",     es: "contacto y redes sociales" },
     { name: "blog",       en: "blog posts",                      es: "artículos del blog" },
     { name: "banner",     en: "show ASCII banner",               es: "mostrar banner ASCII" },
-    { name: "lang [en|es]", en: "switch language",              es: "cambiar idioma" },
+    { name: "loadkeys [en|es]", en: "switch language",              es: "cambiar idioma" },
     { name: "clear",      en: "clear terminal",                  es: "limpiar terminal" },
   ];
 
@@ -118,8 +118,8 @@ export const COMMANDS: Command[] = [
     run: () => <Banner />,
   },
   {
-    name: "lang",
-    description: { en: "switch language: lang [en|es]", es: "cambiar idioma: lang [en|es]" },
+    name: "loadkeys",
+    description: { en: "switch language: loadkeys [en|es]", es: "cambiar idioma: loadkeys [en|es]" },
     run: (args, ctx) => {
       const target = args[0];
       if (target === "en" || target === "es") {

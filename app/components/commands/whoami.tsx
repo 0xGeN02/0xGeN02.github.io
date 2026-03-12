@@ -21,10 +21,10 @@ const C = {
 
 function Divider({ label }: { label: string }) {
   return (
-    <div className="flex items-center gap-1 my-1 select-none">
+    <div className="flex items-center gap-1 my-1 select-none overflow-hidden">
       <span style={{ color: C.surface }}>──</span>
-      <span style={{ color: C.mauve }}>{label}</span>
-      <span style={{ color: C.surface }}>{"─".repeat(Math.max(0, 46 - label.length))}</span>
+      <span style={{ color: C.mauve }} className="whitespace-nowrap">{label}</span>
+      <span style={{ color: C.surface }} className="flex-1 overflow-hidden whitespace-nowrap">{"─".repeat(80)}</span>
     </div>
   );
 }
@@ -58,8 +58,6 @@ function Tag({ children, color = C.mauve }: { children: string; color?: string }
   );
 }
 
-const STACK = ["TypeScript", "Next.js", "Solidity", "Python", "Rust", "Go"];
-
 export default function Whoami({ lang }: { lang: Lang }) {
   const d = data[lang];
   const isEn = lang === "en";
@@ -72,25 +70,43 @@ export default function Whoami({ lang }: { lang: Lang }) {
         <span style={{ color: C.green }} className="font-bold">0xGeN02</span>
         <span style={{ color: C.overlay }}> @ </span>
         <span style={{ color: C.blue }}>arch</span>
-        <span style={{ color: C.overlay }}>  ·  </span>
-        <span style={{ color: C.subtext }}>{d.role}</span>
+        {d.headline && (
+          <>
+            <span style={{ color: C.overlay }}>{"  ·  "}</span>
+            <span style={{ color: C.subtext }}>{d.headline}</span>
+          </>
+        )}
       </div>
 
       {/* ── About ── */}
       <Divider label={isEn ? " about " : " sobre mí "} />
       <div
-        style={{ color: C.text, borderLeftColor: C.surface, borderLeftWidth: 2, borderLeftStyle: "solid" }}
-        className="pl-3 leading-6 mb-1"
+        style={{ borderLeftColor: C.surface, borderLeftWidth: 2, borderLeftStyle: "solid" }}
+        className="pl-3 mb-1 space-y-0"
       >
-        {d.bio}
+        {(d.aboutBullets ?? [d.bio]).map((line, i) => (
+          <div key={i} className="flex gap-2 leading-5">
+            <span style={{ color: C.mauve }} className="shrink-0 select-none">·</span>
+            <span style={{ color: C.text }} className="text-xs">
+              {line}
+            </span>
+          </div>
+        ))}
       </div>
 
       {/* ── Identity ── */}
       <Divider label={isEn ? " identity " : " identidad "} />
-      <Row label={isEn ? "role"         : "rol"}          value={`${d.role} @ ${d.company}`} accent={C.green}   />
-      <Row label={isEn ? "location"     : "ciudad"}       value={d.location}                 accent={C.sky}     />
-      <Row label={isEn ? "learning"     : "aprendiendo"}  value={d.learning}                 accent={C.yellow}  />
-      <Row label={isEn ? "interests"    : "intereses"}    value={d.interests}                accent={C.peach}   />
+      <Row label={isEn ? "role"      : "rol"}         value={`${d.role} @ ${d.company}`} accent={C.green}  />
+      <Row label={isEn ? "location"  : "ciudad"}      value={d.location}                 accent={C.sky}    />
+      <Row label={isEn ? "learning"  : "aprendiendo"} value={d.learning}                 accent={C.yellow} />
+      <Row label={isEn ? "interests" : "intereses"}   value={d.interests}                accent={C.peach}  />
+
+      {/* ── Status ── */}
+      <Divider label={isEn ? " status " : " estado "} />
+      <Row label={isEn ? "availability" : "disponibilidad"} value={d.status.availability} accent={C.green}   />
+      <Row label={isEn ? "type"         : "tipo"}           value={d.status.type}         accent={C.sky}     />
+      <Row label="focus"                                    value={d.status.focus}        accent={C.mauve}   />
+      <Row label={isEn ? "location"     : "ubicación"}      value={d.status.location}     accent={C.yellow}  />
 
       {/* ── Experience ── */}
       <Divider label={isEn ? " experience " : " experiencia "} />
@@ -128,10 +144,25 @@ export default function Whoami({ lang }: { lang: Lang }) {
         ))}
       </div>
 
+      {/* ── Achievements ── */}
+      {d.achievements && d.achievements.length > 0 && (
+        <>
+          <Divider label={isEn ? " achievements " : " logros "} />
+          <div className="space-y-0.5 pl-1">
+            {d.achievements.map((a, i) => (
+              <div key={i} className="flex gap-2 leading-5">
+                <span style={{ color: C.mauve }} className="shrink-0">▸</span>
+                <span style={{ color: C.subtext }} className="text-xs">{a}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
       {/* ── Stack ── */}
-      <Divider label=" stack " />
+      <Divider label={isEn ? " tools & frameworks " : " herramientas "} />
       <div className="flex flex-wrap gap-1 pl-1 mb-1">
-        {STACK.map((t) => (
+        {(d.stack ?? []).map((t) => (
           <Tag key={t} color={C.mauve}>{t}</Tag>
         ))}
       </div>
@@ -162,8 +193,23 @@ export default function Whoami({ lang }: { lang: Lang }) {
       ))}
 
       <div className="mt-2 select-none" style={{ color: C.surface }}>
-        {"─".repeat(52)}
+        {"─".repeat(45)}
       </div>
+
+      {/* ── CV link ── */}
+      {d.cvUrl && (
+        <div className="mt-2">
+          <a
+            href={d.cvUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: C.green, borderColor: C.green, borderWidth: 1, borderStyle: "solid" }}
+            className="rounded px-2 py-0.5 text-xs hover:opacity-80"
+          >
+            {isEn ? "↓ download cv" : "↓ descargar cv"}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

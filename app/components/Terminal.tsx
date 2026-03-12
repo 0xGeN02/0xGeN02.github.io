@@ -69,6 +69,17 @@ export default function Terminal() {
     setContactOpen(true);
   }, []);
 
+  const openCv = useCallback((url: string) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.download = url.split("/").pop() ?? "CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
+
   const appendLine = useCallback((line: OutputLine) => {
     setHistory((prev) => [...prev, line]);
   }, []);
@@ -91,7 +102,7 @@ export default function Terminal() {
     });
 
     // Run
-    const ctx = { lang, setLang, clearHistory, openProjects, openContact };
+    const ctx = { lang, setLang, clearHistory, openProjects, openContact, openCv };
     const result = runCommand(raw, ctx);
 
     if (result !== null && result !== undefined) {
@@ -106,7 +117,7 @@ export default function Terminal() {
     setCmdHistory((prev) => [raw, ...prev.filter((c) => c !== raw)].slice(0, 100));
     setHistoryIndex(-1);
     setInput("");
-  }, [input, lang, appendLine, clearHistory, openProjects, openContact]);
+  }, [input, lang, appendLine, clearHistory, openProjects, openContact, openCv]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -135,7 +146,7 @@ export default function Terminal() {
         e.preventDefault();
         // Autocomplete: find first matching command
         if (input.length === 0) return;
-        const NAMES = ["help", "whoami", "skills", "projects", "experience", "education", "contact", "blog", "banner", "lang", "clear", "sudo"];
+        const NAMES = ["help", "whoami", "skills", "projects", "experience", "contact", "curlo", "cv", "blog", "banner", "lang", "clear", "sudo"];
         const match = NAMES.find((n) => n.startsWith(input.toLowerCase()));
         if (match) setInput(match);
       } else if (e.key === "l" && e.ctrlKey) {

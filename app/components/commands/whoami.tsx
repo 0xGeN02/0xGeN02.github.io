@@ -1,5 +1,6 @@
 "use client";
 import { data } from "@/app/lib/data";
+import { withBasePath } from "@/app/lib/site";
 import { Lang } from "@/app/lib/types";
 import { FiMail, FiGithub, FiLinkedin } from "react-icons/fi";
 import { SiDiscord, SiX } from "react-icons/si";
@@ -203,7 +204,7 @@ export default function Whoami({ lang }: { lang: Lang }) {
       {d.cvUrl && (
         <div className="mt-2">
           <a
-            href={d.cvUrl}
+            href={withBasePath(d.cvUrl)}
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: C.green, borderColor: C.green, borderWidth: 1, borderStyle: "solid" }}

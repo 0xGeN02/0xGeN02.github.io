@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { data } from "@/app/lib/data";
+import { withBasePath } from "@/app/lib/site";
 import { Lang } from "@/app/lib/types";
 
 const C = {
@@ -33,7 +34,7 @@ export default function Projects({ lang }: { lang: Lang }) {
           {p.image ? (
             <div className="relative w-full h-40 overflow-hidden">
               <Image
-                src={p.image}
+                src={withBasePath(p.image)}
                 alt={p.name}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

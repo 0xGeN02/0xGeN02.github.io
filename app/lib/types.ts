@@ -12,6 +12,7 @@ export interface CommandContext {
   clearHistory: () => void;
   openProjects: () => void;
   openContact: () => void;
+  openCv: (url: string) => void;
 }
 
 export interface Command {

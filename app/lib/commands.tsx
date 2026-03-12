@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { Command, CommandContext, Lang } from "./types";
+import { data } from "@/app/lib/data";
+import { withBasePath } from "@/app/lib/site";
 import Whoami from "@/app/components/commands/whoami";
 import Skills from "@/app/components/commands/skills";
 import Experience from "@/app/components/commands/experience";
@@ -46,6 +48,7 @@ function HelpOutput({ lang }: { lang: Lang }) {
     { name: "projects",   en: "GitHub projects",                 es: "proyectos de GitHub" },
     { name: "experience", en: "work experience & education",     es: "experiencia y formación" },
     { name: "contact",    en: "contact info & social links",     es: "contacto y redes sociales" },
+    { name: "curl",      en: "download curriculum / resume",     es: "descargar currículum / CV" },
     { name: "blog",       en: "blog posts",                      es: "artículos del blog" },
     { name: "banner",     en: "show ASCII banner",               es: "mostrar banner ASCII" },
     { name: "loadkeys [en|es]", en: "switch language",              es: "cambiar idioma" },
@@ -108,6 +111,19 @@ export const COMMANDS: Command[] = [
       return (
         <span style={{ color: "#a6adc8", fontFamily: "monospace", fontSize: "0.875rem" }}>
           {ctx.lang === "en" ? "opening contact…" : "abriendo contacto…"}
+        </span>
+      );
+    },
+  },
+  {
+    name: "curl",
+    description: { en: "download curriculum / resume", es: "descargar currículum / CV" },
+    run: (_args, ctx) => {
+      const cvUrl = data[ctx.lang].cvUrl ?? "/pdf/CV_March_2026_EN.pdf";
+      ctx.openCv(withBasePath(cvUrl));
+      return (
+        <span style={{ color: "#a6e3a1", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          {ctx.lang === "en" ? "downloading CV…" : "descargando CV…"}
         </span>
       );
     },

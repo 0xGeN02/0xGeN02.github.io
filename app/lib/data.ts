@@ -158,16 +158,22 @@ export const data: Record<
         url: "https://github.com/HyDE-Project/HyDE",
       },
       {
+        name: "Pokemon Team Generator",
+        desc: "Competitive Pokémon team generator based on sorting algorithm searches such as BubbleSort.",
+        lang: "Python",
+        url: "https://github.com/0xGeN02/PokemonTeamGenerator",
+      },
+      {
+        name: "IoT House",
+        desc: "Raspberry Pi-based home automation system integrating IoT sensors with custom workflows using N8N.",
+        lang: "Python / N8N / Grafana",
+        url: "https://github.com/0xGeN02/iot_house",
+      },
+      {
         name: "CertyLex",
         desc: "A domain-specific framework that codifies legal primitives into audited smart-contract patterns used by CertyChain for verifiable credentials and claims.",
         lang: "Python / TypeScript",
         url: "https://github.com/0xGeN02/CertyLex",
-      },
-      {
-        name: "pq-reth",
-        desc: "A post-quantum secure Ethereum client prototype, implementing quantum-resistant signature schemes and transaction validation logic in Rust.",
-        lang: "Rust / Solidity / HTML",
-        url: "https://github.com/0xGeN02/pq-reth",
       },
     ],
     experience: [
@@ -288,16 +294,22 @@ export const data: Record<
         url: "https://github.com/HyDE-Project/HyDE",
       },
       {
+        name: "Pokemon Team Generator",
+        desc: "Generador de equipos Pokémon competitivo basado en búsquedas por algoritmos de ordenación como BubbleSort.",
+        lang: "Python",
+        url: "https://github.com/0xGeN02/PokemonTeamGenerator",
+      },
+      {
+        name: "IoT House",
+        desc: "Sistema de automatización del hogar basado en Raspberry Pi, integrando sensores IoT con flujos de trabajo personalizados usando N8N.",
+        lang: "Python / N8N / Grafana",
+        url: "https://github.com/0xGeN02/iot_house",
+      },
+      {
         name: "CertyLex",
         desc: "Framework que codifica primitivas legales en patrones de smart contracts auditados, usado por CertyChain para credenciales y claims verificables.",
         lang: "Python / TypeScript",
         url: "https://github.com/0xGeN02/CertyLex",
-      },
-      {
-        name: "pq-reth",
-        desc: "Prototipo de cliente Ethereum con seguridad post-cuántica: implementa esquemas de firma resistentes a la computación cuántica y lógica de validación de transacciones en Rust.",
-        lang: "Rust / Solidity / HTML",
-        url: "https://github.com/0xGeN02/pq-reth",
       },
     ],
     experience: [

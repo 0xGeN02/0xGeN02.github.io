@@ -1,5 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { FiGitBranch } from "react-icons/fi";
 import { OutputLine, Lang } from "@/app/lib/types";
 import { runCommand, Banner } from "@/app/lib/commands";
 import Projects from "@/app/components/commands/projects";
@@ -147,8 +148,10 @@ export default function Terminal() {
 
   return (
     <div
-      className="min-h-screen w-full flex flex-col font-mono text-sm"
-      style={{ background: "#1e1e2e" }}
+      className="min-h-screen w-full px-0 py-0 sm:px-3 sm:py-3 font-mono text-sm"
+      style={{
+        background: "radial-gradient(circle at top, #313244 0%, #1e1e2e 30%, #181825 100%)",
+      }}
       onClick={handleTerminalClick}
     >
       {/* ── Contact overlay ── */}
@@ -206,55 +209,86 @@ export default function Terminal() {
           </div>
         </div>
       )}
-      {/* Terminal window chrome */}
       <div
-        className="flex items-center gap-2 px-4 py-2 select-none sticky top-0 z-10"
-        style={{ background: "#181825", borderBottom: "1px solid #313244" }}
+        className="mx-auto flex min-h-screen w-full flex-col overflow-hidden border sm:min-h-[calc(100vh-1.5rem)] sm:rounded-lg"
+        style={{
+          background: "linear-gradient(180deg, rgba(30,30,46,0.96) 0%, rgba(24,24,37,0.98) 100%)",
+          borderColor: "#313244",
+          boxShadow: "0 24px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(69,71,90,0.35)",
+        }}
       >
-        <span className="w-3 h-3 rounded-full" style={{ background: "#f38ba8" }} />
-        <span className="w-3 h-3 rounded-full" style={{ background: "#f9e2af" }} />
-        <span className="w-3 h-3 rounded-full" style={{ background: "#a6e3a1" }} />
-        <span className="ml-4 text-xs" style={{ color: "#585b70" }}>
-          {PROMPT_HOST} — {PROMPT_DIR}
-        </span>
-        <span className="ml-auto text-xs" style={{ color: "#585b70" }}>
-          [{lang.toUpperCase()}]
-        </span>
-      </div>
-
-      {/* Output history */}
-      <div
-        className="flex-1 overflow-y-auto px-4 py-4 terminal-scroll"
-        style={{ minHeight: 0 }}
-      >
-        {history.map((line) => (
-          <div key={line.id} className="mb-0.5 leading-6">
-            {line.content}
+        {/* Terminal window chrome */}
+        <div
+          className="sticky top-0 z-10 flex items-center gap-3 px-4 py-2.5 select-none"
+          style={{ background: "rgba(24,24,37,0.94)", borderBottom: "1px solid #313244", backdropFilter: "blur(8px)" }}
+        >
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full" style={{ background: "#f38ba8" }} />
+            <span className="w-3 h-3 rounded-full" style={{ background: "#f9e2af" }} />
+            <span className="w-3 h-3 rounded-full" style={{ background: "#a6e3a1" }} />
           </div>
-        ))}
-        <div ref={bottomRef} />
-      </div>
+          <span
+            className="rounded px-2 py-0.5 text-[10px] uppercase tracking-[0.2em]"
+            style={{ color: "#89dceb", background: "rgba(137,220,235,0.08)", border: "1px solid #313244" }}
+          >
+            zsh
+          </span>
+          <span className="text-xs" style={{ color: "#585b70" }}>
+            {PROMPT_HOST}:{PROMPT_DIR}
+          </span>
+          <span className="ml-auto hidden items-center gap-1 text-xs sm:inline-flex" style={{ color: "#fab387" }}>
+            <FiGitBranch size={12} />
+            <span>main</span>
+          </span>
+          <span className="text-xs" style={{ color: "#585b70" }}>
+            [{lang.toUpperCase()}]
+          </span>
+        </div>
 
-      {/* Input line */}
-      <form
-        onSubmit={handleSubmit}
-        className="flex items-center px-4 py-3 sticky bottom-0"
-        style={{ background: "#181825", borderTop: "1px solid #313244" }}
-      >
-        <Prompt host={PROMPT_HOST} dir={PROMPT_DIR} />
-        <input
-          ref={inputRef}
-          autoFocus
-          spellCheck={false}
-          autoComplete="off"
-          autoCorrect="off"
-          className="flex-1 bg-transparent outline-none caret-[#cba6f7] text-[#cdd6f4]"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          aria-label="terminal input"
-        />
-      </form>
+        {/* Output history */}
+        <div
+          className="flex-1 overflow-y-auto px-4 py-4 terminal-scroll sm:px-5"
+          style={{ minHeight: 0 }}
+        >
+          {history.map((line) => (
+            <div key={line.id} className="mb-0.5 leading-6">
+              {line.content}
+            </div>
+          ))}
+          <div ref={bottomRef} />
+        </div>
+
+        {/* Input line */}
+        <div style={{ background: "rgba(24,24,37,0.96)", borderTop: "1px solid #313244" }}>
+          <div className="px-4 pt-2 text-[11px] sm:px-5" style={{ color: "#6c7086" }}>
+            try: help · whoami · projects · contact
+          </div>
+          <form
+            onSubmit={handleSubmit}
+            className="sticky bottom-0 px-4 py-3 sm:px-5"
+          >
+            <div
+              className="flex items-center gap-2 rounded-md px-3 py-2"
+              style={{ background: "#11111b", border: "1px solid #313244" }}
+            >
+              <Prompt host={PROMPT_HOST} dir={PROMPT_DIR} />
+              <input
+                ref={inputRef}
+                autoFocus
+                spellCheck={false}
+                autoComplete="off"
+                autoCorrect="off"
+                className="flex-1 bg-transparent outline-none caret-[#a6e3a1] text-[#cdd6f4]"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                aria-label="terminal input"
+                placeholder={lang === "en" ? "type a command..." : "escribe un comando..."}
+              />
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

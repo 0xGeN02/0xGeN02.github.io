@@ -32,11 +32,13 @@ const C = {
 };
 
 function Divider({ label }: { label: string }) {
+  const trailing = Math.max(0, 80 - label.length);
+
   return (
     <div className="flex items-center gap-1 my-1 select-none overflow-hidden">
       <span style={{ color: C.surface }}>──</span>
-      <span style={{ color: C.mauve }} className="whitespace-nowrap">{label}</span>
-      <span style={{ color: C.surface }} className="flex-1 overflow-hidden whitespace-nowrap">{"─".repeat(80)}</span>
+      <span style={{ color: C.mauve }} className="whitespace-pre">{label}</span>
+      <span style={{ color: C.surface }} className="overflow-hidden whitespace-nowrap">{"─".repeat(trailing)}</span>
     </div>
   );
 }
@@ -197,7 +199,7 @@ export default function Whoami({ lang }: { lang: Lang }) {
       ))}
 
       <div className="mt-2 select-none" style={{ color: C.surface }}>
-        {"─".repeat(45)}
+        {"─".repeat(80)}
       </div>
 
       {/* ── CV link ── */}

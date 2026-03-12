@@ -26,14 +26,6 @@ export const SKILLS: { category: string; items: string[] }[] = [
     ],
   },
   {
-    category: "Data",
-    items: ["PostgreSQL", "Kafka", "Spark", "Airflow", "MongoDB"],
-  },
-  {
-    category: "Backend",
-    items: ["FastAPI", "Node.js", "Docker", "N8N", "GraphQL"],
-  },
-  {
     category: "Blockchain",
     items: [
       "Solidity",
@@ -43,6 +35,14 @@ export const SKILLS: { category: string; items: string[] }[] = [
       "OpenZeppelin",
       "ChainLink",
     ],
+  },
+  {
+    category: "Data",
+    items: ["PostgreSQL", "Kafka", "Spark", "Airflow", "MongoDB"],
+  },
+  {
+    category: "Backend",
+    items: ["FastAPI", "Node.js", "Docker", "N8N", "GraphQL"],
   },
   {
     category: "Embedded / Systems",

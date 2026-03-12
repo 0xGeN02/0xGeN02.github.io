@@ -113,16 +113,16 @@ export const data: Record<
       "Engineer with a background spanning machine learning, blockchain systems, and embedded hardware. Currently focused on AI & data infrastructure at Plexus; previously architected a production-grade blockchain identity platform at CertyChain. I enjoy building where disciplines intersect — from training models to deploying smart contracts.",
     bio: "Smart Systems Engineer specialised in ML, Web3 & systems programming.",
     aboutBullets: [
-      "BSc Smart Systems Engineering · UIE, A Coruña (2022-2026)",
-      "Engineering Programme · Cambridge University, Girton College (2023)",
-      "Research: post-quantum cryptography on EVM",
-      "I use Arch BTW.",
+      "Anime openings, tuned cars and heavy gym sessions keep me balanced",
+      "Post-quantum blockchain researcher chasing secure-by-design ledgers",
+      "Love to build quantitative models for trading experiments (aka losing money in cool ways)",
+      "I use Arch BTW",
     ],
     role: "AI & Data Engineer",
     company: "Plexus",
     location: "Santiago de Compostela, Spain (Remote)",
     learning: "I am focusing on Quantitative Finance and Rust in my free time.",
-    interests: "Coding · GYM · Anime · Economics",
+    interests: "Coding · Football · Videogames · Economics",
     cvUrl: "/pdf/CV_March_2026_EN.pdf",
     certifications: [
       {
@@ -225,7 +225,7 @@ export const data: Record<
       },
       {
         institution: "University of Cambridge",
-        degree: "Engineering Programme · Girton College",
+        degree: "Engineering and Quantum Computing Programme",
         period: "2023",
         bullets: [
           "Intensive programme specialising in quantum computing fundamentals: quantum algorithms, qubits and quantum information processing",
@@ -264,17 +264,17 @@ export const data: Record<
       "Ingeniero con experiencia en machine learning, sistemas blockchain y hardware embebido. Actualmente construyo infraestructura de IA y datos en Plexus; anteriormente diseñé la plataforma de identidad blockchain de CertyChain a nivel de producción. Me apasiona trabajar donde se cruzan disciplinas: desde entrenar modelos hasta desplegar smart contracts.",
     bio: "Ingeniero de Sistemas Inteligentes especializado en IA/ML, Web3 y programación de sistemas.",
     aboutBullets: [
-      "Grado en Smart Systems Engineering · UIE, A Coruña (2022-2026)",
-      "Programa de Ingeniería · Cambridge University, Girton College (2023)",
-      "Investigación: criptografía post-cuántica en EVM",
-      "Uso Arch BTW.",
+      "Sigo vivo gracias a la música, el anime, los coches tuneados y el gym",
+      "Researcher en blockchain postcuánticas buscando ledgers secure-by-design",
+      "Desarrollo modelos cuantitativos para experimentos de trading (aka perdiendo dinero con pasos extra)",
+      "I use arch BTW",
     ],
     role: "AI & Data Engineer",
     company: "Plexus",
     location: "Santiago de Compostela, España (Remoto)",
     learning:
       "En mi tiempo libre me estoy enfocando en Finanzas Cuantitativas y Rust.",
-    interests: "Programar · Gym · Anime · Economía",
+    interests: "Programar · Fútbol · Videojuegos · Economía",
     cvUrl: "/pdf/CV_March_2026_EN.pdf",
     certifications: [
       {
@@ -377,12 +377,12 @@ export const data: Record<
       },
       {
         institution: "University of Cambridge",
-        degree: "Programa de Ingeniería · Girton College",
+        degree: "Programa de Ingeniería y Computación Cuántica",
         period: "2023",
         bullets: [
           "Programa intensivo en fundamentos de computación cuántica: algoritmos cuánticos, qubits y procesamiento de información cuántica",
           "Exploración de nanorobótica y diseño de motores a reacción en la intersección de la mecánica cuántica y sistemas de ingeniería avanzada",
-          "Nota: A−",
+          "Nota: A-",
         ],
       },
     ],

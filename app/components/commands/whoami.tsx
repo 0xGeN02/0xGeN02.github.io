@@ -165,7 +165,7 @@ export default function Whoami({ lang }: { lang: Lang }) {
           <TimelineEntry
             key={i}
             period={exp.period}
-            title={<span style={{ color: C.text }}>{exp.role}</span>}
+            title={<span style={{ color: C.pink }}>{exp.role}</span>}
             subtitle={exp.company}
             details={exp.desc}
           />
@@ -179,7 +179,7 @@ export default function Whoami({ lang }: { lang: Lang }) {
           <TimelineEntry
             key={i}
             period={edu.period}
-            title={<span style={{ color: C.text }}>{edu.degree}</span>}
+            title={<span style={{ color: C.yellow }}>{edu.degree}</span>}
             details={edu.institution}
           />
         ))}

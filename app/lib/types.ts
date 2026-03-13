@@ -13,6 +13,7 @@ export interface CommandContext {
   openProjects: () => void;
   openContact: () => void;
   openCv: (url: string) => void;
+  openBlog: () => void;
 }
 
 export interface Command {

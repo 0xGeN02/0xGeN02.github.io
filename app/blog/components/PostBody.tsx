@@ -1,0 +1,182 @@
+import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypeHighlight from "rehype-highlight";
+
+interface PostBodyProps {
+  content: string;
+}
+
+const mdxComponents = {
+  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h1
+      {...props}
+      style={{
+        fontSize: "18px",
+        fontWeight: 500,
+        color: "#cdd6f4",
+        marginTop: "2rem",
+        marginBottom: "0.75rem",
+        fontFamily: "inherit",
+      }}
+    />
+  ),
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h2
+      {...props}
+      style={{
+        fontSize: "15px",
+        fontWeight: 500,
+        color: "#cdd6f4",
+        marginTop: "1.75rem",
+        marginBottom: "0.5rem",
+        fontFamily: "inherit",
+      }}
+    />
+  ),
+  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3
+      {...props}
+      style={{
+        fontSize: "13px",
+        fontWeight: 500,
+        color: "#a6adc8",
+        marginTop: "1.5rem",
+        marginBottom: "0.4rem",
+        fontFamily: "inherit",
+      }}
+    />
+  ),
+  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
+    <p
+      {...props}
+      style={{
+        fontSize: "13px",
+        color: "#a6adc8",
+        lineHeight: 1.8,
+        margin: "0.75rem 0",
+        fontFamily: "inherit",
+      }}
+    />
+  ),
+  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+    <a
+      {...props}
+      style={{
+        color: "#89b4fa",
+        textDecoration: "none",
+        borderBottom: "1px solid #313244",
+        transition: "border-color 0.12s",
+      }}
+      onMouseEnter={(e) =>
+        ((e.currentTarget as HTMLElement).style.borderColor = "#89b4fa")
+      }
+      onMouseLeave={(e) =>
+        ((e.currentTarget as HTMLElement).style.borderColor = "#313244")
+      }
+    />
+  ),
+  code: (props: React.HTMLAttributes<HTMLElement>) => {
+    // inline code (no className = not a code block)
+    if (!props.className) {
+      return (
+        <code
+          {...props}
+          style={{
+            background: "#181825",
+            color: "#cba6f7",
+            padding: "1px 6px",
+            borderRadius: "4px",
+            fontSize: "12px",
+            fontFamily: "inherit",
+          }}
+        />
+      );
+    }
+    return <code {...props} />;
+  },
+  pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
+    <pre
+      {...props}
+      style={{
+        background: "#181825",
+        border: "1px solid #313244",
+        borderRadius: "8px",
+        padding: "1rem 1.25rem",
+        overflowX: "auto",
+        fontSize: "12px",
+        lineHeight: 1.7,
+        margin: "1.25rem 0",
+        fontFamily: "inherit",
+      }}
+    />
+  ),
+  blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
+    <blockquote
+      {...props}
+      style={{
+        borderLeft: "2px solid #cba6f7",
+        borderRadius: 0,
+        paddingLeft: "1rem",
+        margin: "1rem 0",
+        color: "#585b70",
+        fontStyle: "italic",
+        fontSize: "13px",
+        fontFamily: "inherit",
+      }}
+    />
+  ),
+  ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
+    <ul
+      {...props}
+      style={{
+        paddingLeft: "1.25rem",
+        margin: "0.75rem 0",
+        color: "#a6adc8",
+        fontSize: "13px",
+        lineHeight: 1.8,
+        fontFamily: "inherit",
+      }}
+    />
+  ),
+  ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
+    <ol
+      {...props}
+      style={{
+        paddingLeft: "1.25rem",
+        margin: "0.75rem 0",
+        color: "#a6adc8",
+        fontSize: "13px",
+        lineHeight: 1.8,
+        fontFamily: "inherit",
+      }}
+    />
+  ),
+  li: (props: React.LiHTMLAttributes<HTMLLIElement>) => (
+    <li {...props} style={{ marginBottom: "0.25rem", fontFamily: "inherit" }} />
+  ),
+  hr: () => (
+    <hr
+      style={{
+        border: "none",
+        borderTop: "1px solid #313244",
+        margin: "2rem 0",
+      }}
+    />
+  ),
+  strong: (props: React.HTMLAttributes<HTMLElement>) => (
+    <strong {...props} style={{ color: "#cdd6f4", fontWeight: 500 }} />
+  ),
+};
+
+export default function PostBody({ content }: PostBodyProps) {
+  return (
+    <MDXRemote
+      source={content}
+      options={{
+        mdxOptions: {
+          rehypePlugins: [rehypeHighlight],
+        },
+      }}
+      components={mdxComponents}
+    />
+  );
+}

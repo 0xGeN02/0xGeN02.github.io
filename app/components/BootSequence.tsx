@@ -38,8 +38,7 @@ export default function BootSequence({ lang, onDone }: Props) {
       cancelled = true;
       clearTimeout(timerId);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [lines, onDone]);
 
   return (
     <div

@@ -1,8 +1,8 @@
 ---
 title: "Timsort: the hybrid sorting algorithm Python relies on"
 description: "Breaking down how Timsort combines merge sort and insertion sort to achieve O(n log n) worst-case while exploiting natural runs in real-world data."
-date: "2024-10-03"
-tags: ["algorithms", "sorting"]
+date: "6-8-2025"
+tags: ["algorithms", "python"]
 language: "Python"
 draft: false
 ---

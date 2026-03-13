@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import RouteHistoryTracker from "@/app/components/RouteHistoryTracker";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -17,7 +18,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={jetbrainsMono.variable}>
-      <body className="font-mono">{children}</body>
+      <body className="font-mono">
+        <RouteHistoryTracker />
+        {children}
+      </body>
     </html>
   );
 }

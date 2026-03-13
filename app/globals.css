@@ -97,3 +97,73 @@ body::before {
   color: var(--ctp-base);
 }
 
+/* ── Blog markdown link hover (Server Component-safe) ── */
+.blog-post-link:hover {
+  border-bottom-color: var(--ctp-blue) !important;
+}
+
+/* ── highlight.js theme (Catppuccin-ish) ── */
+.hljs {
+  color: var(--ctp-text);
+  background: transparent;
+}
+
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--ctp-overlay0);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: var(--ctp-mauve);
+}
+
+.hljs-string,
+.hljs-doctag,
+.hljs-attr {
+  color: var(--ctp-green);
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-type,
+.hljs-class .hljs-title {
+  color: var(--ctp-blue);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-regexp,
+.hljs-link {
+  color: var(--ctp-peach);
+}
+
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-meta,
+.hljs-meta .hljs-keyword {
+  color: var(--ctp-sky);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+

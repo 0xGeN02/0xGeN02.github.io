@@ -60,18 +60,13 @@ const mdxComponents = {
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a
       {...props}
+      className="blog-post-link"
       style={{
         color: "#89b4fa",
         textDecoration: "none",
         borderBottom: "1px solid #313244",
         transition: "border-color 0.12s",
       }}
-      onMouseEnter={(e) =>
-        ((e.currentTarget as HTMLElement).style.borderColor = "#89b4fa")
-      }
-      onMouseLeave={(e) =>
-        ((e.currentTarget as HTMLElement).style.borderColor = "#313244")
-      }
     />
   ),
   code: (props: React.HTMLAttributes<HTMLElement>) => {

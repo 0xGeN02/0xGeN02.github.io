@@ -6,7 +6,6 @@ import { withBasePath } from "@/app/lib/site";
 import Whoami from "@/app/components/commands/whoami";
 import Skills from "@/app/components/commands/skills";
 import Experience from "@/app/components/commands/experience";
-import Blog from "@/app/components/commands/blog";
 
 const BANNER_EN = `
   
@@ -230,7 +229,14 @@ export const COMMANDS: Command[] = [
   {
     name: "blog",
     description: { en: "blog posts", es: "artículos" },
-    run: (_args, ctx) => <Blog lang={ctx.lang} />,
+    run: (_args, ctx) => {
+      ctx.openBlog();
+      return (
+        <span style={{ color: "#a6adc8", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          {ctx.lang === "en" ? "opening blog..." : "abriendo blog..."}
+        </span>
+      );
+    },
   },
   {
     name: "banner",

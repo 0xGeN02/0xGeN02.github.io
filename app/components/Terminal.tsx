@@ -1,5 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { FiGitBranch } from "react-icons/fi";
 import { OutputLine, Lang } from "@/app/lib/types";
 import { runCommand, Banner } from "@/app/lib/commands";
@@ -21,6 +22,7 @@ function Prompt({ host, dir }: { host: string; dir: string }) {
 }
 
 export default function Terminal() {
+  const router = useRouter();
   const [lang, setLang] = useState<Lang>("en");
   const [projectsOpen, setProjectsOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -80,6 +82,11 @@ export default function Terminal() {
     document.body.removeChild(link);
   }, []);
 
+  const openBlog = useCallback(() => {
+    sessionStorage.setItem("forceBlogBoot", "1");
+    router.push("/blog");
+  }, [router]);
+
   const appendLine = useCallback((line: OutputLine) => {
     setHistory((prev) => [...prev, line]);
   }, []);
@@ -102,7 +109,7 @@ export default function Terminal() {
     });
 
     // Run
-    const ctx = { lang, setLang, clearHistory, openProjects, openContact, openCv };
+    const ctx = { lang, setLang, clearHistory, openProjects, openContact, openCv, openBlog };
     const result = runCommand(raw, ctx);
 
     if (result !== null && result !== undefined) {
@@ -117,7 +124,7 @@ export default function Terminal() {
     setCmdHistory((prev) => [raw, ...prev.filter((c) => c !== raw)].slice(0, 100));
     setHistoryIndex(-1);
     setInput("");
-  }, [input, lang, appendLine, clearHistory, openProjects, openContact, openCv]);
+  }, [input, lang, appendLine, clearHistory, openProjects, openContact, openCv, openBlog]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {

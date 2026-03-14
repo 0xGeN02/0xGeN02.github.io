@@ -1,14 +1,13 @@
 import Link from "next/link";
 
-import { TAG_COLORS, LANG_COLORS, type Post } from "@/app/blog/types";
+import { TAG_COLORS, type Post } from "@/app/blog/types";
+import LanguageChips from "./LanguageChips";
 
 function getTagColor(tag: string): string {
   return TAG_COLORS[tag.toLowerCase()] ?? "#a6adc8";
 }
 
-function getLangColor(lang: string): string {
-  return LANG_COLORS[lang] ?? "#a6adc8";
-}
+
 
 // Derives the @tag/name format shown in the card header.
 // Uses the first tag as the namespace.
@@ -31,8 +30,8 @@ export default function PostCard({ post }: PostCardProps) {
   const languages = Array.isArray(post.language)
     ? post.language
     : post.language
-      ? [post.language]
-      : [];
+    ? [post.language]
+    : [];
 
   const card = (
     <article
@@ -153,33 +152,7 @@ export default function PostCard({ post }: PostCardProps) {
             flexShrink: 0,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              gap: "6px",
-              flexWrap: "wrap",
-              justifyContent: "flex-end",
-            }}
-          >
-            {languages.map((lang) => (
-              <span
-                key={lang}
-                style={{
-                  fontSize: "10px",
-                  padding: "2px 8px",
-                  borderRadius: "4px",
-                  border: `1px solid ${
-                    isDraft ? "#313244" : getLangColor(lang)
-                  }`,
-                  background: "#11111b",
-                  color: isDraft ? "#585b70" : getLangColor(lang),
-                  fontFamily: "inherit",
-                }}
-              >
-                {lang}
-              </span>
-            ))}
-          </div>
+          <LanguageChips languages={languages} isDraft={isDraft} />
           <span style={{ whiteSpace: "nowrap" }}>
             {isDraft ? "—" : `${post.readingTime} min read`}
           </span>

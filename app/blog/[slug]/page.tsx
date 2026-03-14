@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllPosts, getPostBySlug } from "@/app/blog/lib/posts";
 import PostBody from "@/app/blog/components/PostBody";
 import { TAG_COLORS } from "@/app/blog/types";
+import LanguageChips from "../components/LanguageChips";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -30,6 +31,13 @@ export default async function PostPage({ params }: Props) {
   const { meta, content } = post;
   const ns = meta.tags[0] ?? "blog";
   const nsColor = TAG_COLORS[ns.toLowerCase()] ?? "#a6adc8";
+
+  // Normaliza el array de lenguajes igual que en PostCard
+  const languages = Array.isArray(meta.language)
+    ? meta.language
+    : meta.language
+    ? [meta.language]
+    : [];
 
   return (
     <div
@@ -136,13 +144,16 @@ export default async function PostPage({ params }: Props) {
             </div>
             <div
               style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
                 fontSize: "11px",
                 color: "#585b70",
                 whiteSpace: "nowrap",
                 flexShrink: 0,
               }}
             >
-              {meta.language}
+              <LanguageChips languages={languages} />
               <span style={{ margin: "0 6px", color: "#313244" }}>·</span>
               {meta.readingTime} min read
             </div>

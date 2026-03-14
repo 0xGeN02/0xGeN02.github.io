@@ -5,19 +5,21 @@ import { Lang } from "@/app/lib/types";
 import { FiMail, FiGithub, FiLinkedin, FiSend } from "react-icons/fi";
 import { SiDiscord, SiX } from "react-icons/si";
 
+import "@/app/globals.css";
+
 const C = {
-  base:    "#1e1e2e",
-  mantle:  "#181825",
-  surface: "#313244",
-  overlay: "#6c7086",
-  subtext: "#a6adc8",
-  text:    "#cdd6f4",
-  blue:    "#89b4fa",
-  mauve:   "#cba6f7",
-  green:   "#a6e3a1",
-  red:     "#f38ba8",
-  yellow:  "#f9e2af",
-  border:  "#45475a",
+  base:    "var(--ctp-base)",
+  mantle:  "var(--ctp-mantle)",
+  surface: "var(--ctp-surface0)",
+  overlay: "var(--ctp-overlay0)",
+  subtext: "var(--ctp-subtext0)",
+  text:    "var(--ctp-text)",
+  blue:    "var(--ctp-blue)",
+  mauve:   "var(--ctp-mauve)",
+  green:   "var(--ctp-green)",
+  red:     "var(--ctp-red)",
+  yellow:  "var(--ctp-yellow)",
+  border:  "var(--ctp-surface1)",
 };
 
 const LABEL_ICONS: Record<string, React.ReactNode> = {

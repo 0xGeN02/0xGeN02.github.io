@@ -1,16 +1,20 @@
 "use client";
 
+import "@/app/globals.css";
+
 const TAG_COLORS: Record<string, string> = {
-  blockchain: "#89b4fa",
-  algorithms: "#a6e3a1",
-  data:       "#cba6f7",
-  robotics:   "#fab387",
-  blog:       "#f9e2af",
-  ml:         "#89dceb",
-  rust:       "#f38ba8",
-  python:     "#f9e2af",
-  solidity:   "#89b4fa",
-  cpp:        "#fab387",
+  blockchain: "var(--ctp-blue)",
+  algorithms: "var(--ctp-green)",
+  data:       "var(--ctp-mauve)",
+  robotics:   "var(--ctp-peach)",
+  blog:       "var(--ctp-yellow)",
+  ml:         "var(--ctp-sky)",
+  devops:    "var(--ctp-red)",
+
+  rust:       "var(--ctp-red)",
+  python:     "var(--ctp-yellow)",
+  solidity:   "var(--ctp-blue)",
+  cpp:        "var(--ctp-peach)",
 };
 
 function getTagColor(tag: string): string {

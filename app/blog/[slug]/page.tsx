@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getAllPosts, getPostBySlug } from "@/app/blog/lib/posts";
 import PostBody from "@/app/blog/components/PostBody";
+import { TAG_COLORS } from "@/app/blog/types";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -20,19 +21,6 @@ export async function generateMetadata({ params }: Props) {
     description: post.meta.description,
   };
 }
-
-const TAG_COLORS: Record<string, string> = {
-  blockchain: "#89b4fa",
-  algorithms: "#a6e3a1",
-  data:       "#cba6f7",
-  robotics:   "#fab387",
-  blog:       "#f9e2af",
-  ml:         "#89dceb",
-  rust:       "#f38ba8",
-  python:     "#f9e2af",
-  solidity:   "#89b4fa",
-  cpp:        "#fab387",
-};
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;

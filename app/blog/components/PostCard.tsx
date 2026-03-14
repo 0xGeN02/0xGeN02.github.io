@@ -1,41 +1,6 @@
 import Link from "next/link";
 
-export interface Post {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  tags: string[];
-  language: string;
-  readingTime: number; // minutes
-  draft?: boolean;
-}
-
-const TAG_COLORS: Record<string, string> = {
-  blockchain: "#89b4fa",
-  algorithms: "#a6e3a1",
-  data:        "#cba6f7",
-  robotics:    "#fab387",
-  blog:        "#f9e2af",
-  ml:          "#89dceb",
-  rust:        "#f38ba8",
-  python:      "#f9e2af",
-  solidity:    "#89b4fa",
-  cpp:         "#fab387",
-};
-
-const LANG_COLORS: Record<string, string> = {
-  TypeScript:  "#89b4fa",
-  JavaScript:  "#f9e2af",
-  Python:      "#f9e2af",
-  Rust:        "#f38ba8",
-  Java:        "#fab387",
-  "C++":       "#fab387",
-  C:           "#f38ba8",
-  Solidity:    "#89b4fa",
-  SQL:         "#94e2d5",
-  Go:          "#89dceb",
-};
+import { TAG_COLORS, LANG_COLORS, type Post } from "@/app/blog/types";
 
 function getTagColor(tag: string): string {
   return TAG_COLORS[tag.toLowerCase()] ?? "#a6adc8";
@@ -63,6 +28,11 @@ interface PostCardProps {
 export default function PostCard({ post }: PostCardProps) {
   const pkg = getPackageName(post);
   const isDraft = post.draft ?? false;
+  const languages = Array.isArray(post.language)
+    ? post.language
+    : post.language
+      ? [post.language]
+      : [];
 
   const card = (
     <article
@@ -172,7 +142,7 @@ export default function PostCard({ post }: PostCardProps) {
           ))}
         </div>
 
-        {/* Language + reading time */}
+        {/* Languages + reading time */}
         <div
           style={{
             display: "flex",
@@ -180,24 +150,39 @@ export default function PostCard({ post }: PostCardProps) {
             gap: "8px",
             fontSize: "11px",
             color: "#585b70",
-            whiteSpace: "nowrap",
             flexShrink: 0,
           }}
         >
-          <span
+          <div
             style={{
-              width: "8px",
-              height: "8px",
-              borderRadius: "50%",
-              background: isDraft ? "#585b70" : getLangColor(post.language),
-              display: "inline-block",
-              flexShrink: 0,
+              display: "flex",
+              gap: "6px",
+              flexWrap: "wrap",
+              justifyContent: "flex-end",
             }}
-          />
-          <span style={{ color: isDraft ? "#45475a" : "#a6adc8" }}>
-            {post.language}
+          >
+            {languages.map((lang) => (
+              <span
+                key={lang}
+                style={{
+                  fontSize: "10px",
+                  padding: "2px 8px",
+                  borderRadius: "4px",
+                  border: `1px solid ${
+                    isDraft ? "#313244" : getLangColor(lang)
+                  }`,
+                  background: "#11111b",
+                  color: isDraft ? "#585b70" : getLangColor(lang),
+                  fontFamily: "inherit",
+                }}
+              >
+                {lang}
+              </span>
+            ))}
+          </div>
+          <span style={{ whiteSpace: "nowrap" }}>
+            {isDraft ? "—" : `${post.readingTime} min read`}
           </span>
-          <span>{isDraft ? "—" : `${post.readingTime} min read`}</span>
         </div>
       </div>
     </article>

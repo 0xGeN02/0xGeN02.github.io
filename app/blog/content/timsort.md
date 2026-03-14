@@ -1,9 +1,9 @@
 ---
 title: "Timsort: the hybrid sorting algorithm Python relies on"
-description: "Breaking down how Timsort combines merge sort and insertion sort to achieve O(n log n) worst-case while exploiting natural runs in real-world data."
+description: "Breaking down how Timsort combines merge sort and insertion sort to achieve O(n*log(n)) worst-case while exploiting natural runs in real-world data."
 date: "6-8-2025"
-tags: ["algorithms", "python"]
-language: "Python"
+tags: ["algorithms"]
+language: "python"
 draft: false
 ---
 
@@ -17,7 +17,7 @@ The key insight: **real data has runs**. A run is a sequence of already-sorted e
 
 ### Insertion sort for small chunks
 
-For arrays smaller than a threshold (usually 32–64 elements), Timsort uses insertion sort. It's O(n²) in theory, but for small n the constant factor is tiny — it has excellent cache locality and almost no overhead.
+For arrays smaller than a threshold (usually 32–64 elements), Timsort uses insertion sort. It's O(n^2) in theory, but for small n the constant factor is tiny — it has excellent cache locality and almost no overhead.
 
 ```python
 def insertion_sort(arr, left, right):
@@ -37,7 +37,7 @@ Once runs are identified (and extended to minimum size using insertion sort), Ti
 - `len(run[-3]) > len(run[-2]) + len(run[-1])`
 - `len(run[-2]) > len(run[-1])`
 
-This guarantees O(n log n) in the worst case while achieving O(n) on already-sorted or nearly-sorted data.
+This guarantees O(n*log(n)) in the worst case while achieving O(n) on already-sorted or nearly-sorted data.
 
 ## A simplified implementation
 

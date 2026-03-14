@@ -2,7 +2,7 @@
 title: "Setting up a Reth execution client on Arch Linux"
 description: "A walkthrough of compiling Reth from source, configuring JWT auth, and connecting to a CL client like Lighthouse for a full Ethereum node."
 date: "12-11-2025"
-tags: ["blockchain", "devops"]
+tags: ["blockchain", "dev-ops"]
 language: ["Rust", "Solidity", "Bash"]
 draft: false
 ---

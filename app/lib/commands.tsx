@@ -170,6 +170,20 @@ function HelpOutput({ lang }: { lang: Lang }) {
 
 export const COMMANDS: Command[] = [
   {
+    name: "exit",
+    description: { en: "exit to landing page", es: "salir a la portada" },
+    run: (_args, ctx) => {
+      if (typeof window !== "undefined") {
+        window.location.href = "/";
+      }
+      return (
+        <span style={{ color: "#a6e3a1", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          {ctx.lang === "en" ? "Exiting to root..." : "Redirigiendo a directorio root..."}
+        </span>
+      );
+    },
+  },
+  {
     name: "help",
     description: { en: "list available commands", es: "listar comandos" },
     run: (_args, ctx) => <HelpOutput lang={ctx.lang} />,

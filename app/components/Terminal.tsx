@@ -10,7 +10,7 @@ import Contact from "@/app/components/commands/contact";
 const PROMPT_HOST = "0xGeN02@arch";
 const PROMPT_DIR  = "~/portfolio";
 
-function Prompt({ host, dir }: { host: string; dir: string }) {
+export function Prompt({ host, dir }: { host: string; dir: string }) {
   return (
     <span className="select-none">
       <span style={{ color: "#a6e3a1" }}>{host}</span>

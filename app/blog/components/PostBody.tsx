@@ -10,12 +10,13 @@ const mdxComponents = {
     <h1
       {...props}
       style={{
-        fontSize: "18px",
-        fontWeight: 500,
+        fontSize: "24px",
+        fontWeight: 600,
         color: "#cdd6f4",
-        marginTop: "2rem",
-        marginBottom: "0.75rem",
+        marginTop: "2.3rem",
+        marginBottom: "1rem",
         fontFamily: "inherit",
+        letterSpacing: "-0.02em",
       }}
     />
   ),
@@ -23,12 +24,13 @@ const mdxComponents = {
     <h2
       {...props}
       style={{
-        fontSize: "15px",
-        fontWeight: 500,
-        color: "#cdd6f4",
-        marginTop: "1.75rem",
-        marginBottom: "0.5rem",
+        fontSize: "20px",
+        fontWeight: 600,
+        color: "#b4befe",
+        marginTop: "2.2rem",
+        marginBottom: "0.9rem",
         fontFamily: "inherit",
+        letterSpacing: "-0.01em",
       }}
     />
   ),
@@ -36,12 +38,13 @@ const mdxComponents = {
     <h3
       {...props}
       style={{
-        fontSize: "13px",
-        fontWeight: 500,
-        color: "#a6adc8",
-        marginTop: "1.5rem",
-        marginBottom: "0.4rem",
+        fontSize: "16px",
+        fontWeight: 550,
+        color: "#cba6f7",
+        marginTop: "1.7rem",
+        marginBottom: "0.5rem",
         fontFamily: "inherit",
+        letterSpacing: "-0.01em",
       }}
     />
   ),
@@ -49,11 +52,13 @@ const mdxComponents = {
     <p
       {...props}
       style={{
-        fontSize: "13px",
+        fontSize: "14px",
         color: "#a6adc8",
+        fontWeight: 550,
         lineHeight: 1.8,
         margin: "0.75rem 0",
         fontFamily: "inherit",
+        letterSpacing: "-0.005em",
       }}
     />
   ),

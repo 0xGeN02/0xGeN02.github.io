@@ -43,11 +43,12 @@ jobs:
         env:
           NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
         run: |
-          if [ -z "$NEXT_PUBLIC_GA_ID" ]; then
-            echo "::error::NEXT_PUBLIC_GA_ID missing"
+          if [ -z "${NEXT_PUBLIC_GA_ID}" ]; then
+            echo "::error::NEXT_PUBLIC_GA_ID missing in github-pages environment secrets"
             exit 1
           fi
-          echo "GA ID is present"
+          echo "GA ID detected"
+
       - name: Build static export
         run: pnpm build
         env:

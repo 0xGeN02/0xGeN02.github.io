@@ -25,6 +25,7 @@ const HELP_COLORS = {
   lavender: "#b4befe",
   white: "#cdd6f4",
   cyan: "#89dceb",
+  red: "#f38ba8"
 } as const;
 
 const HELP_GROUPS = [
@@ -103,6 +104,11 @@ const HELP_GROUPS = [
         description: { en: "list available commands", es: "listar comandos disponibles" },
         color: HELP_COLORS.blue,
       },
+      {
+        name: "exit",
+        description: { en: "at dir ~/blog; exit to landing page", es: "en el dire ~/blog; salir a la portada" },
+        color: HELP_COLORS.red
+      }
     ],
   },
   {

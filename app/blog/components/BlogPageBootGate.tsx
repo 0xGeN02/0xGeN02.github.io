@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import BlogBootSequence from "@/app/blog/components/DownloadSequence";
 
 interface BlogPageBootGateProps {
@@ -8,6 +8,7 @@ interface BlogPageBootGateProps {
 }
 
 function getBootingStateFromSession(): boolean {
+  if (typeof window === "undefined") return false;
   const forceBoot = sessionStorage.getItem("forceBlogBoot") === "1";
   if (forceBoot) {
     sessionStorage.removeItem("forceBlogBoot");
@@ -22,11 +23,10 @@ function getBootingStateFromSession(): boolean {
 }
 
 export default function BlogPageBootGate({ children }: BlogPageBootGateProps) {
-  const [booting, setBooting] = useState(false);
-
-  useEffect(() => {
-    setBooting(getBootingStateFromSession());
-  }, []);
+  const [booting, setBooting] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return getBootingStateFromSession();
+  });
 
   return booting ? (
     <BlogBootSequence onDone={() => setBooting(false)} />

@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   title: "0xGeN02 — terminal",
   description: "Let's connect and build cool stuff together!",
   icons: { icon: "/favicon.ico" },
+  twitter: {
+    card: "summary_large_image",
+    title: "0xGeN02 — terminal",
+    description: "Let's connect and build cool stuff together!",
+  }
 };
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";

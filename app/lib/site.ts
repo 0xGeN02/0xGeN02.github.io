@@ -1,4 +1,4 @@
-const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? process.env.NEXT_PUBLIC_REPO_BASE ?? "";
+const rawBasePath = "";
 
 export const SITE_BASE_PATH = rawBasePath.endsWith("/")
   ? rawBasePath.slice(0, -1)

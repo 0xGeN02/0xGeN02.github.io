@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import RouteHistoryTracker from "@/app/components/RouteHistoryTracker";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -15,6 +16,8 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.ico" },
 };
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={jetbrainsMono.variable}>
@@ -22,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <RouteHistoryTracker />
         {children}
       </body>
+      <GoogleAnalytics gaId={GA_ID} />
     </html>
   );
 }

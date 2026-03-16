@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight";
+import remarkGfm from "remark-gfm";
 import React from "react";
 import CodeBlock from "./CodeBlock";
 
@@ -50,6 +51,20 @@ const mdxComponents = {
       }}
     />
   ),
+  h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h4
+      {...props}
+      style={{
+        fontSize: "14px",
+        fontWeight: 550,
+        color: "#f38ba8",
+        marginTop: "1.5rem",
+        marginBottom: "0.5rem",
+        fontFamily: "inherit",
+        letterSpacing: "-0.01em",
+      }}
+    />
+  ),
   p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
       {...props}
@@ -68,12 +83,61 @@ const mdxComponents = {
     <a
       {...props}
       className="blog-post-link"
+      target="_blank"
+      rel="noopener noreferrer"
       style={{
         color: "#89b4fa",
         textDecoration: "none",
         borderBottom: "1px solid #313244",
         transition: "border-color 0.12s",
       }}
+    />
+  ),
+  table: (props: React.HTMLAttributes<HTMLTableElement>) => (
+    <div style={{ overflowX: "auto", margin: "1.25rem 0" }}>
+      <table
+        {...props}
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          fontSize: "13px",
+          fontFamily: "inherit",
+          color: "#a6adc8",
+        }}
+      />
+    </div>
+  ),
+  thead: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead {...props} style={{ borderBottom: "1px solid #45475a" }} />
+  ),
+  th: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <th
+      {...props}
+      style={{
+        padding: "8px 14px",
+        textAlign: "left",
+        fontWeight: 500,
+        color: "#cdd6f4",
+        letterSpacing: "0.02em",
+        fontSize: "12px",
+        whiteSpace: "nowrap",
+      }}
+    />
+  ),
+  td: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <td
+      {...props}
+      style={{
+        padding: "7px 14px",
+        borderBottom: "1px solid #313244",
+        verticalAlign: "top",
+      }}
+    />
+  ),
+  tr: (props: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr
+      {...props}
+      style={{ transition: "background 0.1s" }}
     />
   ),
   code: (props: React.HTMLAttributes<HTMLElement>) => {
@@ -162,6 +226,7 @@ export default function PostBody({ content }: PostBodyProps) {
       options={{
         mdxOptions: {
           rehypePlugins: [[rehypeHighlight, { detect: true }]],
+          recmaPlugins: [remarkGfm],
         },
       }}
       components={mdxComponents}

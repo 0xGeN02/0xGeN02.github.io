@@ -26,18 +26,24 @@ Before starting, make sure you have:
 ```bash
 sudo apt update
 sudo apt install -y ca-certificates curl gnupg
+```
 
+```bash
 # Add Docker's official GPG key
 sudo install -m 0755 -d /usr/share/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
   | sudo gpg --dearmor -o /usr/share/keyrings/docker.gpg
+```
 
+```bash
 # Add the repository
 . /etc/os-release
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] \
   https://download.docker.com/linux/ubuntu $VERSION_CODENAME stable" \
   | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 
+```bash
 # Install
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin

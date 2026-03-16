@@ -1,5 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight";
+import React from "react";
+import CodeBlock from "./CodeBlock";
 
 interface PostBodyProps {
   content: string;
@@ -75,7 +77,7 @@ const mdxComponents = {
     />
   ),
   code: (props: React.HTMLAttributes<HTMLElement>) => {
-    // inline code (no className = not a code block)
+    // inline code — no className = not a highlighted block
     if (!props.className) {
       return (
         <code
@@ -91,24 +93,10 @@ const mdxComponents = {
         />
       );
     }
+    // highlighted block — colors from globals.css
     return <code {...props} />;
   },
-  pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre
-      {...props}
-      style={{
-        background: "#181825",
-        border: "1px solid #313244",
-        borderRadius: "8px",
-        padding: "1rem 1.25rem",
-        overflowX: "auto",
-        fontSize: "12px",
-        lineHeight: 1.7,
-        margin: "1.25rem 0",
-        fontFamily: "inherit",
-      }}
-    />
-  ),
+  pre: CodeBlock,
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
       {...props}
@@ -173,7 +161,7 @@ export default function PostBody({ content }: PostBodyProps) {
       source={content}
       options={{
         mdxOptions: {
-          rehypePlugins: [rehypeHighlight],
+          rehypePlugins: [[rehypeHighlight, { detect: true }]],
         },
       }}
       components={mdxComponents}

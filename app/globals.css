@@ -102,7 +102,11 @@ body::before {
   border-bottom-color: var(--ctp-blue) !important;
 }
 
-/* ── highlight.js theme (Catppuccin-ish) ── */
+/* ── highlight.js · Catppuccin Mocha para 0xGeN02/blog ── */
+
+/* ─────────────────────────────────────────
+   BLOQUE BASE
+───────────────────────────────────────── */
 .hljs {
   color: var(--ctp-text);
   background: transparent;
@@ -110,60 +114,199 @@ body::before {
 
 pre code.hljs {
   display: block;
+  background: var(--ctp-mantle, #181825); /* ligeramente más oscuro que surface0 */
+  border-radius: 10px;
+  padding: 1.4em 1.3em;
+  border: 1px solid var(--ctp-surface1);
   overflow-x: auto;
-  padding: 0;
+  font-size: 0.875rem;     /* relativo — respeta tu font-size base */
+  line-height: 1.75;
+  font-family: inherit;    /* hereda tu fuente mono de la página, sin conflictos */
+  tab-size: 4;             /* Rust y Python usan 4 espacios */
+  /* scrollbar fina, coherente con la estética terminal */
+  scrollbar-width: thin;
+  scrollbar-color: var(--ctp-surface2, #585b70) transparent;
+}
+pre code.hljs::-webkit-scrollbar { height: 5px; }
+pre code.hljs::-webkit-scrollbar-thumb {
+  background: var(--ctp-surface2, #585b70);
+  border-radius: 3px;
 }
 
+/* ─────────────────────────────────────────
+   COMENTARIOS
+───────────────────────────────────────── */
 .hljs-comment,
 .hljs-quote {
-  color: var(--ctp-overlay0);
+  color: var(--ctp-overlay1, #7f849c); /* un paso más visible que overlay0 */
   font-style: italic;
 }
 
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-subst {
-  color: var(--ctp-mauve);
+/* ─────────────────────────────────────────
+   KEYWORDS  (fn, let, async, if, pub…)
+   Rust/Python/Solidity los usan mucho
+───────────────────────────────────────── */
+.hljs-keyword {
+  color: var(--ctp-mauve);   /* #cba6f7 — violeta */
+  font-weight: 500;
 }
 
+/* ─────────────────────────────────────────
+   OPERADORES  (=>, ==, !, +, |, &…)
+───────────────────────────────────────── */
+.hljs-operator {
+  color: var(--ctp-sky);     /* #89dceb — cian claro */
+}
+
+/* ─────────────────────────────────────────
+   PUNTUACIÓN  ({, }, (, ), ;, ::…)
+   en Rust los :: son constantes visuales
+───────────────────────────────────────── */
+.hljs-punctuation {
+  color: var(--ctp-overlay2, #9399b2);
+}
+
+/* ─────────────────────────────────────────
+   STRINGS y TEMPLATE LITERALS
+───────────────────────────────────────── */
 .hljs-string,
+.hljs-template-literal {
+  color: var(--ctp-green);   /* #a6e3a1 */
+}
+
+/* ─────────────────────────────────────────
+   TEMPLATE VARIABLES  (`${foo}`)
+───────────────────────────────────────── */
+.hljs-template-variable {
+  color: var(--ctp-flamingo, #f2cdcd);
+}
+
+/* ─────────────────────────────────────────
+   ATRIBUTOS / DOCTAGS
+   Rust: #[derive(...)]  →  hljs-meta
+   Python decorators     →  hljs-meta
+───────────────────────────────────────── */
 .hljs-doctag,
 .hljs-attr {
-  color: var(--ctp-green);
+  color: var(--ctp-lavender); /* #b4befe */
 }
 
+/* ─────────────────────────────────────────
+   META / DECORADORES / DIRECTIVAS
+   #[derive(Debug)]  @decorator  pragma
+───────────────────────────────────────── */
+.hljs-meta {
+  color: var(--ctp-peach);   /* #fab387 — naranja suave, llama la atención */
+}
+.hljs-meta .hljs-keyword {
+  color: var(--ctp-peach);
+  font-weight: 500;
+}
+
+/* ─────────────────────────────────────────
+   NOMBRES DE FUNCIÓN
+   fn main  def load  function setup
+───────────────────────────────────────── */
 .hljs-title,
+.hljs-function .hljs-title {
+  color: var(--ctp-blue);    /* #89b4fa */
+  font-style: italic;
+}
+
+/* ─────────────────────────────────────────
+   SECCIONES / SELECTORES CSS
+───────────────────────────────────────── */
 .hljs-section,
+.hljs-selector-tag,
 .hljs-selector-id,
 .hljs-selector-class,
-.hljs-type,
-.hljs-class .hljs-title {
+.hljs-subst {
   color: var(--ctp-blue);
 }
 
-.hljs-number,
-.hljs-literal,
-.hljs-variable,
-.hljs-template-variable,
+/* ─────────────────────────────────────────
+   TIPOS / STRUCTS / CLASES
+   Vec<T>  HashMap  struct MyStruct  class
+───────────────────────────────────────── */
+.hljs-type,
+.hljs-class .hljs-title {
+  color: var(--ctp-yellow);  /* #f9e2af — diferencia tipos de funciones */
+}
+
+/* ─────────────────────────────────────────
+   NÚMEROS y LITERALES  (true, false, null)
+───────────────────────────────────────── */
+.hljs-number {
+  color: var(--ctp-peach);   /* más legible que maroon en fondo oscuro */
+}
+.hljs-literal {
+  color: var(--ctp-sapphire, #74c7ec); /* true/false distintos de números */
+}
+
+/* ─────────────────────────────────────────
+   VARIABLES
+───────────────────────────────────────── */
+.hljs-variable {
+  color: var(--ctp-flamingo, #f2cdcd);
+}
+
+/* ─────────────────────────────────────────
+   REGEXP y LINKS
+───────────────────────────────────────── */
 .hljs-regexp,
 .hljs-link {
-  color: var(--ctp-peach);
+  color: var(--ctp-pink);
 }
 
+/* ─────────────────────────────────────────
+   BUILT-INS  (println!, console, Vec::new)
+───────────────────────────────────────── */
 .hljs-built_in,
-.hljs-builtin-name,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-meta,
-.hljs-meta .hljs-keyword {
-  color: var(--ctp-sky);
-}
-
-.hljs-emphasis {
+.hljs-builtin-name {
+  color: var(--ctp-red);
   font-style: italic;
 }
 
-.hljs-strong {
-  font-weight: 700;
+/* ─────────────────────────────────────────
+   SÍMBOLOS / BULLETS
+───────────────────────────────────────── */
+.hljs-symbol,
+.hljs-bullet {
+  color: var(--ctp-teal);
 }
 
+/* ─────────────────────────────────────────
+   PROPIEDADES de objeto  (foo.bar)
+───────────────────────────────────────── */
+.hljs-property {
+  color: var(--ctp-teal);
+}
+
+/* ─────────────────────────────────────────
+   PARÁMETROS de función
+───────────────────────────────────────── */
+.hljs-params {
+  color: var(--ctp-rosewater, #f5e0dc);
+}
+
+/* ─────────────────────────────────────────
+   DIFF  (para posts de devops/setup)
+───────────────────────────────────────── */
+.hljs-deletion {
+  color: var(--ctp-red);
+  background: rgba(243, 139, 168, 0.10);
+  border-left: 2px solid var(--ctp-red);
+  padding-left: 0.5em;
+}
+.hljs-addition {
+  color: var(--ctp-green);
+  background: rgba(166, 227, 161, 0.10);
+  border-left: 2px solid var(--ctp-green);
+  padding-left: 0.5em;
+}
+
+/* ─────────────────────────────────────────
+   ÉNFASIS (Markdown inline code)
+───────────────────────────────────────── */
+.hljs-emphasis { font-style: italic; }
+.hljs-strong   { font-weight: 700; }
